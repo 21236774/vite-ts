@@ -1,0 +1,8 @@
+:root {
+  --background-grey: #f1f1f1;
+  --background-fff: #fff;
+}
+
+.n-tabs .n-tab-pane {
+ padding: 0;
+}
