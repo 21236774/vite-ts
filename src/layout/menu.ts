@@ -29,6 +29,7 @@ export const menuOptions: MenuOption[] = [
       },
       { default: () => '仪表盘' }
     ),
+    pathUrl: '/front',
     text: '仪表盘',
     key: 'front',
     icon: renderIcon(LaptopIcon)
@@ -48,6 +49,7 @@ export const menuOptions: MenuOption[] = [
           },
           { default: () => '表格搜索' }
         ),
+        pathUrl: '/list',
         text: '表格搜索',
         key: 'list'
       }
@@ -63,6 +65,7 @@ export const menuOptions: MenuOption[] = [
       },
       { default: () => '系统设置' }
     ),
+    pathUrl: '/edit',
     key: 'edit',
     text: '系统设置',
     icon: renderIcon(SettingsIcon),
@@ -75,7 +78,7 @@ const getArr = (arr: MenuOption[]) => {
   arr.forEach(item => {
     if(!item.children) {
       tabAllList.push({
-        path: item?.label()?.props.to.path as string,
+        path: item?.pathUrl as string,
         text: item.text as string,
         key: item.key as string
       })

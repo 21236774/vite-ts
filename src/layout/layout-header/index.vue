@@ -5,14 +5,10 @@ import { useStoreTheme } from '@/store'
 import {
   NLayoutHeader,
   NButton,
-  darkTheme,
-  NConfigProvider,
-  GlobalThemeOverrides,
   NAvatar,
   NDrawer,
   NIcon
 } from 'naive-ui'
-import type { GlobalTheme } from 'naive-ui'
 import type { ThemeColor } from '@/theme-pack'
 
 const store = useStoreTheme()
@@ -21,8 +17,6 @@ const log: string = import.meta.env.VITE_LOGO
 let theme: ThemeColor = 'default'
 const indexTheme = ref<number>(0)
 const active = ref(false)
-console.log(active)
-const themeS = ref<GlobalTheme | null>(null)
 const popselectOptions = [
   {
     label: '默认主题',

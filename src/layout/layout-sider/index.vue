@@ -1,13 +1,13 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+// import { storeToRefs } from 'pinia' // 它将为任何响应式属性创建 refs
 import { useRouter } from 'vue-router'
 import { useStoreTheme, useTab } from '@/store'
 import {
   NLayout,
   NLayoutSider,
   NMenu,
-  NButton,
   NConfigProvider,
   useMessage
 } from 'naive-ui'
@@ -16,35 +16,48 @@ import { menuOptions, tabAllList } from '../menu'
 
 const store = useStoreTheme()
 const tabStore = useTab()
+// const { tabActive } = tabStore // 结构会丢失相应数据，因为store是一个reactive
+// const { tabActive } = storeToRefs(tabStore)
+
 const router = useRouter()
 const themeOverrides = ref(store.$state.themeOverrides)
 const theme = ref(store.$state.darkTheme)
-watch(() => store.$state.darkTheme, (val) => {
-  theme.value = val
-})
-watch(() => store.$state.themeOverrides, (val) => {
-  themeOverrides.value = val
-})
 
 // 全局挂载消息方法，使得能直接在js当中使用
 window.messageApi = useMessage()
 
-const value = ref(router.currentRoute.value.path.split('/')[1])
+const value = ref(router.currentRoute.value.path.split('/')[1] || tabStore.$state.tabActive?.key)
 const tabData = tabAllList.find(el => {
   const path = el.path.substring(1, el.path.length)
   if(path === value.value) {
     return { el }
   }
 })
+console.log(tabAllList);
 // 默认初始化添加一次tab
 tabStore.updateTabs(tabData)
 
 
 // 点击选中菜单回调
 const menuChange = (key: string, item: MenuOption) => {
+  const pathUrl = item.pathUrl as string
   const text = item.text as string
-  tabStore.updateTabs({ key, text })
+  tabStore.updateTabs({ key, text, path: pathUrl })
 }
+
+// 监听store中的变化改变暗黑模式
+watch(() => store.$state.darkTheme, (val) => {
+  theme.value = val
+})
+// 监听主题颜色，改变对应的主题
+watch(() => store.$state.themeOverrides, (val) => {
+  themeOverrides.value = val
+})
+
+// 控制menu选中
+watch(() => tabStore.$state.tabActive, (val) => {
+  value.value = val?.key
+}, { deep: true, immediate: true })
 
 </script>
 
@@ -63,6 +76,7 @@ const menuChange = (key: string, item: MenuOption) => {
         >
           <n-menu
             :default-value="value"
+            :value="value"
             :collapsed-width="64"
             :collapsed-icon-size="22"
             :options="menuOptions"

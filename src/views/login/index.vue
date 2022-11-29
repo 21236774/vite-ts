@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { FormInst, useMessage, FormItemRule, NInput, NForm, NFormItem, NButton } from 'naive-ui'
-import { useRouter, Router } from 'vue-router'
-import { setStorage, setCookie } from '@/hooks'
+import { FormInst, useMessage, NInput, NForm, NFormItem, NButton } from 'naive-ui'
+import { useRoute } from 'vue-router'
+import { setStorage, setCookie } from '@/utils'
 import { useStoreAuth } from '@/store'
+import { useRouterPush } from '@/hooks'
 
 interface Rules {
   required: boolean,
@@ -11,10 +12,13 @@ interface Rules {
   trigger: string | string[]
 }
 
-const router: Router = useRouter()
 const store = useStoreAuth()
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
+const router = useRoute()
+
+const { routerPush } = useRouterPush()
+
 const formValue = ref({
   user: {
     account: '',
@@ -34,8 +38,8 @@ const password: Rules = {
 }
 const rules = { user: { account, password } }
 
-const handleValidateClick = (e: MouseEvent): void => {
-  e.preventDefault()
+const handleValidateClick = (e?: MouseEvent): void => {
+  e && e.preventDefault()
   formRef.value?.validate((errors) => {
     if (!errors) {
       const { account, password }: { account: string | number, password: string | number } = formValue.value.user
@@ -44,15 +48,18 @@ const handleValidateClick = (e: MouseEvent): void => {
         const params = { id: account, name: 1024 }
         setStorage('homeParams', params)
         setCookie('token', account, 1)
-        router.push({ name: 'index-front', params })
+        if(router.query?.redirect) routerPush({ path: router.query?.redirect + '', params })
+        else routerPush({ name: 'index-front', params })
       } else {
         message.error('账号密码错误')
       }
-      
     } else {
       message.error('账号密码错误')
     }
   })
+}
+const handleKeyup = (e: KeyboardEvent):void => {
+  e?.keyCode === 13 && handleValidateClick()
 }
 
 </script>
@@ -76,7 +83,7 @@ const handleValidateClick = (e: MouseEvent): void => {
         <n-input v-model:value="formValue.user.account" placeholder="输入账号" />
       </n-form-item>
       <n-form-item label="密码" path="user.password">
-        <n-input v-model:value="formValue.user.password" type="password" show-password-on="mousedown" placeholder="输入密码" :maxlength="8" />
+        <n-input v-model:value="formValue.user.password" type="password" show-password-on="mousedown" @keyup="handleKeyup" placeholder="输入密码" :maxlength="8" />
       </n-form-item>
       <n-form-item>
         <n-button type="info" class="bg-info w-full mt-1.5" attr-type="button" @click="handleValidateClick">

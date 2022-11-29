@@ -6,7 +6,8 @@ interface StyleItem {
   textColor: string,
   bgOpacity: number,
   globalColor: string,
-  modalColor:  string
+  modalColor: string,
+  activeColor: string
 }
 
 export interface Style {
@@ -21,13 +22,15 @@ export const style:Style = {
     textColor: '#333',
     bgOpacity: 1,
     globalColor: '#fff',
-    modalColor: '#fff'
+    modalColor: '#fff',
+    activeColor: '#dddddd'
   },
   dark: {
     bg: 'rgba(24,24,28, 1)',
     textColor: '#bbb',
     bgOpacity: 1,
     globalColor: 'rgba(16,16,20)',
-    modalColor: 'rgb(44, 44, 50)'
+    modalColor: 'rgb(44, 44, 50)',
+    activeColor: 'rgb(80, 80, 80)'
   }
 }

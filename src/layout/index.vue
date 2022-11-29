@@ -3,7 +3,7 @@ import LayoutMain from './layout-main/index.vue'
 import LayoutSider from './layout-sider/index.vue'
 import LayoutEdit from './layout-edit/index.vue'
 import LayoutHeader from './layout-header/index.vue'
-import LayoutBookmark from './layout-bookmark/index.vue'
+import LayoutTabs from './layout-tabs/index.vue'
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import LayoutBookmark from './layout-bookmark/index.vue'
       </LayoutHeader>
     </template>
     <template #tabs>
-      <LayoutBookmark/>
+      <LayoutTabs/>
     </template>
     <LayoutMain/>
   </LayoutSider>

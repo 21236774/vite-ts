@@ -1,13 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from '~pages'
 import type { App } from 'vue';
+import { createRouterGuard } from './guard'
 
-routes.push({
-  path: '/',
-  redirect: '/login',
-});
-
-console.log(routes)
+// 后续路由改造一下
+routes[0].redirect = '/front'
 
 export const setupRouter = (app: App) => {
   const router = createRouter({
@@ -15,4 +12,5 @@ export const setupRouter = (app: App) => {
     routes,
   })
   app.use(router)
+  createRouterGuard(router)
 }

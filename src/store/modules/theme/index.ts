@@ -38,7 +38,6 @@ export const useStoreTheme = defineStore('useStoreTheme', {
       this.$state.color = color
       // 这里使用replace是区分字体颜色和背景颜色， 背景颜色需要透明
       const textColor = color.replace(',0.2', ',1')
-      setIconColor(textColor)
       this.$state.themeOverrides = merge(this.$state.themeOverrides, setThemeOverrides(color, textColor))
     }
   }

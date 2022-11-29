@@ -9,7 +9,8 @@ import { api } from '@/api/oderview'
   <n-grid :x-gap="12" :y-gap="12" :cols="4">
     <n-gi :span="3">
       <div class="h-400 bg-bg-color rounded-2xl p-21 box-border">
-        <n-button type="info">按钮</n-button>
+        <n-button type="info" v-has="['xdd']">专属按钮</n-button>
+        <n-button type="info" v-has="['admin']">按钮</n-button>
       </div>
     </n-gi>
     <n-gi>

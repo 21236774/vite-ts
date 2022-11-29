@@ -1,8 +1,7 @@
-:root {
-  --background-grey: #f1f1f1;
-  --background-fff: #fff;
-}
 
 .n-tabs .n-tab-pane {
  padding: 0;
+}
+.n-tabs .n-tabs-nav.n-tabs-nav--card-type .n-tabs-tab.n-tabs-tab--active {
+  background-color: var(--color-active-color);
 }

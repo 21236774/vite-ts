@@ -1,8 +1,7 @@
 import type { App } from 'vue';
 
 // 自定义指令
-
-const usersPermissions = ['user'] // 实际是后端返回的
+const usersPermissions = ['admin'] // 实际是后端返回的
 
 export const directive = (app: App) => {
   app.directive('has', {

@@ -101,10 +101,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash@*", "@types/lodash@^4.14.181":
-  "integrity" "sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q=="
-  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.182.tgz"
-  "version" "4.14.182"
+"@types/lodash@*", "@types/lodash@^4.14.181", "@types/lodash@^4.14.185":
+  "integrity" "sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.185.tgz"
+  "version" "4.14.185"
 
 "@types/ms@*":
   "integrity" "sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA=="
@@ -1845,7 +1845,7 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   "version" "4.2.0"
 
-"postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.10", "postcss@^8.2.14", "postcss@^8.3.3", "postcss@^8.4.13", "postcss@^8.4.14", "postcss@>=8.0.9":
+"postcss@^8.0.0", "postcss@^8.1.0", "postcss@^8.1.10", "postcss@^8.2.14", "postcss@^8.3.3", "postcss@^8.4.13", "postcss@^8.4.14", "postcss@>=8.0.9":
   "integrity" "sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.14.tgz"
   "version" "8.4.14"
