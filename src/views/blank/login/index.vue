@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { FormInst, useMessage, NInput, NForm, NFormItem, NButton } from 'naive-ui'
 import { useRoute } from 'vue-router'
-import { setStorage, setCookie } from '@/utils'
 import { useStoreAuth } from '@/store'
 import { useRouterPush } from '@/hooks'
 
@@ -43,13 +42,11 @@ const handleValidateClick = (e?: MouseEvent): void => {
   formRef.value?.validate((errors) => {
     if (!errors) {
       const { account, password }: { account: string | number, password: string | number } = formValue.value.user
-      if(account === store.account && password === store.password) {
+      const isLogin = store.userPwdLogin({ account, password })
+      if(isLogin) {
         message.success('登录成功')
-        const params = { id: account, name: 1024 }
-        setStorage('homeParams', params)
-        setCookie('token', account, 1)
-        if(router.query?.redirect) routerPush({ path: router.query?.redirect + '', params })
-        else routerPush({ name: 'index-front', params })
+        if(router.query?.redirect) routerPush({ path: router.query?.redirect + '' })
+        else routerPush({ path: import.meta.env.VITE_ROUTE_HOME_PATH })
       } else {
         message.error('账号密码错误')
       }

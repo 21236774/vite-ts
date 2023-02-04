@@ -1,30 +1,40 @@
 // 登录许可证-登录的一些条件
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router' 
 import { getCookie } from '@/utils'
+import { dynamicGuard } from './dynamic'
 
+// 路由拦截
 export const permissionGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   // 未登录、权限页面、
   const isLogin = Boolean(getCookie('token')) // 是否登录
-  const permissions = to.path === '/login' ? true : false // 不登录是否有权限进入当前页面
-   console.log(to);
+  const permissions = dynamicGuard(to, from, next) // 判断是否登录正确
+  const needLogin = Boolean(to.meta.auth) // 是否需求登录权限的页面
+  if(permissions) return
   
   const arr: Common.StrategyActions[] = [
     [
       isLogin && to.name === 'login',
       () => {
-        // 已登录、访问登录页
-        next({ name: 'index-front' })
+        // 已登录、访问登录页跳转到首页
+        next({ path: import.meta.env.VITE_ROUTE_HOME_PATH })
       }
     ],
     [
-      permissions,
+      isLogin && to.path === '/',
+      () => {
+        // 已登录、访问 / 跳转首页
+        next({ path: import.meta.env.VITE_ROUTE_HOME_PATH })
+      }
+    ],
+    [
+      !needLogin,
       () => {
         // 不需要登录权限直接放行
         next()
       }
     ],
     [
-      !isLogin && !permissions,
+      !isLogin && needLogin,
       () => {
         // 未登录进入需求权限的页面
         const redirect = to.fullPath
@@ -32,7 +42,7 @@ export const permissionGuard = (to: RouteLocationNormalized, from: RouteLocation
       }
     ],
     [
-      isLogin && !permissions,
+      isLogin && needLogin && !permissions,
       () => {
         // 登录状态下有权限直接放行
         next()

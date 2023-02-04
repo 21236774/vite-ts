@@ -17,7 +17,7 @@ export const useTab = defineStore('useTab', {
     tabActive: {
       text: '仪表盘',
       key: 'front',
-      path: '/front'
+      path: '/basic/front'
     }
   }),
   actions: {
@@ -31,6 +31,8 @@ export const useTab = defineStore('useTab', {
     },
     // 更新tab、判断是否存在，存在则跳转，不存在添加后跳转
     updateTabs(params: TabActive | undefined) {
+      console.log(params);
+      
       if(!params) return
       this.tabActive = params
       const obj = this.tabsList.find(el => el.key === params.key)

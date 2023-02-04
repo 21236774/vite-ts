@@ -4,7 +4,7 @@ import { NMessageProvider } from 'naive-ui'
 
 <template>
   <n-message-provider>
-    <router-view></router-view>
+    <router-view />
   </n-message-provider>
 </template>
 

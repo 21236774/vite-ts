@@ -1,4 +1,4 @@
-import { app } from './plugins/app'
+import { app } from '@/plugins/app'
 import { setupRouter } from '@/router'
 import { setupStore } from '@/store'
 import { directive } from '@/plugins/directive'

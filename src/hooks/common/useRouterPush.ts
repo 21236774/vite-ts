@@ -1,4 +1,5 @@
 import { useRouter } from "vue-router";
+import { setCookie, removeStorage } from '@/utils'
 import type { RouteLocationRaw } from "vue-router";
 /** 
  * 路由跳转
@@ -32,10 +33,18 @@ export function useRouterPush(inSetup = true) {
     router.go(-1);
   }
 
+  /** 退出登录 */
+  function goLogout() {
+    setCookie('token', '', -1)
+    removeStorage('userInfo')
+    router.replace('/login')
+  }
+
   return {
     routerPush,
     toHome,
-    routerBack
+    routerBack,
+    goLogout
   }
 
 }

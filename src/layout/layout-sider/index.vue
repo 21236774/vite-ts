@@ -3,7 +3,7 @@
 import { ref, watch } from 'vue'
 // import { storeToRefs } from 'pinia' // 它将为任何响应式属性创建 refs
 import { useRouter } from 'vue-router'
-import { useStoreTheme, useTab } from '@/store'
+import { useStoreTheme, useTab, userRoute } from '@/store'
 import {
   NLayout,
   NLayoutSider,
@@ -11,36 +11,35 @@ import {
   NConfigProvider,
   useMessage
 } from 'naive-ui'
+import { routerFlat } from '@/utils'
 import type { MenuOption } from 'naive-ui'
-import { menuOptions, tabAllList } from '../menu'
 
 const store = useStoreTheme()
 const tabStore = useTab()
+const routeStore = userRoute()
 // const { tabActive } = tabStore // 结构会丢失相应数据，因为store是一个reactive
 // const { tabActive } = storeToRefs(tabStore)
+
+const menuOptions = ref(routeStore.menu)
 
 const router = useRouter()
 const themeOverrides = ref(store.$state.themeOverrides)
 const theme = ref(store.$state.darkTheme)
+const path = router.currentRoute.value.path
 
-// 全局挂载消息方法，使得能直接在js当中使用
+// 全局挂载消息方法，使得能直接在ts当中使用
 window.messageApi = useMessage()
 
 const value = ref(router.currentRoute.value.path.split('/')[1] || tabStore.$state.tabActive?.key)
-const tabData = tabAllList.find(el => {
-  const path = el.path.substring(1, el.path.length)
-  if(path === value.value) {
-    return { el }
-  }
-})
-console.log(tabAllList);
-// 默认初始化添加一次tab
-tabStore.updateTabs(tabData)
+const tabData = routerFlat(routeStore.menu as AuthRoute.Route[])
+
+// @ts-ignore 默认初始化添加一次tab
+tabStore.updateTabs(tabData.find(el => el.path === path))
 
 
 // 点击选中菜单回调
 const menuChange = (key: string, item: MenuOption) => {
-  const pathUrl = item.pathUrl as string
+  const pathUrl = item.path as string
   const text = item.text as string
   tabStore.updateTabs({ key, text, path: pathUrl })
 }

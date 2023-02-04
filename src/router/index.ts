@@ -1,16 +1,44 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import routes from '~pages'
+import { views } from '@/views'
+// import routes from '~pages'
 import type { App } from 'vue';
 import { createRouterGuard } from './guard'
 
-// 后续路由改造一下
-routes[0].redirect = '/front'
+// 初始路由
+const routes: AuthRoute.Route[] = [
+  {
+    name: 'login',
+    path: '/login',
+    component: 'blank',
+    meta: {
+      title: '登录',
+      auth: false
+    }
+  },
+  {
+    name: '404',
+    path: '/:pathMatch(.*)',
+    component: 'blank',
+    meta: {
+      title: '未找到',
+      auth: false
+    }
+  }
+]
+// 添加初始路由
+export const routeCom = routes.map((item) => {
+  const obj = { ...item }
+  obj.component = views[item.name]
+  return obj
+})
+
+export const router = createRouter({
+  history: createWebHashHistory(), // HashHistory
+  // @ts-ignore 
+  routes: routeCom,
+})
 
 export const setupRouter = (app: App) => {
-  const router = createRouter({
-    history: createWebHashHistory(), // HashHistory
-    routes,
-  })
   app.use(router)
   createRouterGuard(router)
 }
