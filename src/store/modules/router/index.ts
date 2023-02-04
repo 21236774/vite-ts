@@ -49,6 +49,14 @@ export const userRoute = defineStore('userRoute', {
         return routeInfo
       }
       return []
+    },
+    // 重置路由，保留无需权限的初始路由
+    resetRoutes() {
+      this.$reset()
+      const routesData = router.getRoutes()
+      routesData.forEach(el => {
+        if(el.meta?.auth) router.removeRoute(el.name as string)
+      })
     }
   }
 })

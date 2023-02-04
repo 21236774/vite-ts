@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { renderIcon } from '@/utils'
 import { ColorPalette } from '@vicons/ionicons5'
-import { useStoreTheme } from '@/store'
+import { useStoreTheme, userRoute } from '@/store'
 import { NLayoutHeader,NButton,NAvatar,NDrawer,NIcon,NDropdown } from 'naive-ui'
 import type { DropdownOption } from 'naive-ui'
 import { LogOutOutline as LogoutIcon } from '@vicons/ionicons5'
@@ -10,12 +10,14 @@ import type { ThemeColor } from '@/theme-pack'
 import { useRouterPush } from '@/hooks'
 
 const store = useStoreTheme()
+const storeRoute = userRoute()
 const { goLogout } = useRouterPush()
 const color = ref<string>(store.$state.color.replace(',0.2', ',0.8'))
 const log: string = import.meta.env.VITE_LOGO
 let theme: ThemeColor = 'default'
 const indexTheme = ref<number>(0)
 const active = ref(false)
+
 const popselectOptions = [
   {
     label: '默认主题',
@@ -48,7 +50,10 @@ const update = () => {
 }
 
 const onSelect = (key: string | number, option: DropdownOption) => {
-  if(key === 'logout') goLogout()
+  if(key === 'logout') {
+    goLogout()
+    storeRoute.resetRoutes()
+  }
 }
 
 watch(() => store.$state.color, (val) => {

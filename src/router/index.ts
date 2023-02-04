@@ -5,7 +5,7 @@ import type { App } from 'vue';
 import { createRouterGuard } from './guard'
 
 // 初始路由
-const routes: AuthRoute.Route[] = [
+export const routes: AuthRoute.Route[] = [
   {
     name: 'login',
     path: '/login',
