@@ -14,14 +14,17 @@ module.exports = {
       'global-color': 'var(--color-global-color)',
       'modal-color': 'var(--color-modal-color)',
       'menu-active': 'var(--menu-active-color)',
-      'icon-color': 'var(--icon-color)'
+      'icon-color': 'var(--icon-color)',
+      'bg-main-color': 'var(--icon-bg-main-color)'
     },
     extend: { // 扩展
       spacing: {
+        '13': '12px',
         '50': '50px',
         '21': '20px',
         '41': '40px',
         '101': '100px',
+        '201': '200px',
         '400': '400px'
       },
       lineHeight: {

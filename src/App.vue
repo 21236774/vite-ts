@@ -13,7 +13,6 @@ import { NMessageProvider } from 'naive-ui'
 html,body {
   height: 100%;
   overflow: hidden;
-  background-color: var(--background-grey);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

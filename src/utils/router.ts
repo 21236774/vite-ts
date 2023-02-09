@@ -41,7 +41,7 @@ export const routeToMenu = (routeInfo: AuthRoute.Route[]) => {
           RouterLink,
           {
             to: {
-              path: el.path
+              path: menuChildren?.length ? '' : el.path // 当有多级菜单时候，点击不跳路由
             }
           },
           { default: () => el.meta?.title }

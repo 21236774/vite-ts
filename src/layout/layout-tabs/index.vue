@@ -1,43 +1,48 @@
 <script setup lang="ts">
-// 这里直接用的$ref可以不用.value
-import { watch } from 'vue'
+
+import { watch, ref } from 'vue'
 import { NTabs, NTabPane } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { useTab } from '@/store'
+import { type TabActive } from '@/store'
 import { useRouterPush } from '@/hooks'
 
 const message = useMessage()
 const { routerPush } = useRouterPush()
 const tabStore = useTab()
-const menuList = $ref([])
-const value = $ref('0')
+// 这里直接用的$ref可以不用.value
+// const menuList = $ref([]) 
+// const value = $ref('0')
+const menuList = ref<TabActive[]>([]) 
+const value = ref(0)
 
 // 选中某个tabs
 const updateChange = (val: string | number) => {
-  const obj = menuList.find((item: { text: string | number }) => item.text === val)
+  const obj = menuList.value.find((item: { text: string | number }) => item.text === val)
   tabStore.updateTabs(obj)
-  routerPush(obj.path)
+  if(obj) routerPush(obj.path)
 }
 
 // 关闭单个tabs
 const handleClose = (name: number) => {
-  if (menuList.length === 1) {
+  if (menuList.value.length === 1) {
     message.error('最后一个了')
     return
   }
   message.info('关掉 ' + name)
-  const obj = menuList.find((v: any) => name === v.text)
-  const remainArr = menuList.filter((v: any) => name !== v.text)
-  tabStore.delTabsList(obj.key)
-  if (value === name) {
+  const obj = menuList.value.find((v: any) => name === v.text)
+  const remainArr = menuList.value.filter((v: any) => name !== v.text)
+  if(obj) tabStore.delTabsList(obj?.key)
+  if (value.value === name) {
     const remainItem = remainArr[remainArr.length - 1]
     routerPush(remainItem.path)
   }
 }
 
 watch(() => [tabStore.$state.tabsList, tabStore.$state.tabActive], (newVal) => {
-  menuList = newVal?.[0]
-  value = newVal[1]?.text
+  menuList.value = newVal?.[0] as TabActive[]
+  // @ts-ignore
+  value.value = newVal[1]?.text
 }, { deep: true, immediate: true })
 
 

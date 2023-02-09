@@ -12,6 +12,8 @@ export function useRouterPush(inSetup = true) {
    * @param newTab - 是否在新的浏览器Tab标签打开
    */
   const routerPush = (to: RouteLocationRaw, newTab = false) => {
+    console.log(to);
+    
     if(newTab) {
       const routerData = router.resolve(to);
       window.open(routerData.href, '_blank');
@@ -25,7 +27,7 @@ export function useRouterPush(inSetup = true) {
    * @param newTab - 在新的浏览器标签打开
    */
   function toHome(newTab = false) {
-    routerPush('/front', newTab)
+    routerPush('/', newTab)
   }
   
   /** 返回上一级路由 */

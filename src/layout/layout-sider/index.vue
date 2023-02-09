@@ -30,12 +30,11 @@ const path = router.currentRoute.value.path
 // 全局挂载消息方法，使得能直接在ts当中使用
 window.messageApi = useMessage()
 
-const value = ref(router.currentRoute.value.path.split('/')[1] || tabStore.$state.tabActive?.key)
+const value = ref(path.split('/')[1] || tabStore.$state.tabActive?.key)
 const tabData = routerFlat(routeStore.menu as AuthRoute.Route[])
 
 // @ts-ignore 默认初始化添加一次tab
 tabStore.updateTabs(tabData.find(el => el.path === path))
-
 
 // 点击选中菜单回调
 const menuChange = (key: string, item: MenuOption) => {
@@ -82,11 +81,11 @@ watch(() => tabStore.$state.tabActive, (val) => {
             @update:value="menuChange"
           />
         </n-layout-sider>
-        <n-layout class="color-text-color">
-          <div class="bg-bg-color">
+        <n-layout class="color-text-color color-666666">
+          <div class="bg-bg-color fixed w-full shadow">
             <slot name="tabs"></slot>
           </div>
-          <div class="m-21">
+          <div class="m-21 mt-50">
             <slot />
           </div>
         </n-layout>

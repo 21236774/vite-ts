@@ -7,7 +7,8 @@ interface StyleItem {
   bgOpacity: number,
   globalColor: string,
   modalColor: string,
-  activeColor: string
+  activeColor: string,
+  bgMainColor: string,
 }
 
 export interface Style {
@@ -18,12 +19,13 @@ export interface Style {
 // 颜色主题配置颜色
 export const style:Style = {
   default: {
-    bg: '#f1f1f1',
+    bg: '#fff', // 盒子背景
     textColor: '#333',
     bgOpacity: 1,
     globalColor: '#fff',
     modalColor: '#fff',
-    activeColor: '#dddddd'
+    activeColor: '#dddddd',
+    bgMainColor: '#f4f5f5' // 布局背景
   },
   dark: {
     bg: 'rgba(24,24,28, 1)',
@@ -31,6 +33,7 @@ export const style:Style = {
     bgOpacity: 1,
     globalColor: 'rgba(16,16,20)',
     modalColor: 'rgb(44, 44, 50)',
-    activeColor: 'rgb(80, 80, 80)'
+    activeColor: 'rgb(80, 80, 80)',
+    bgMainColor: 'rgb(16, 16, 20)'
   }
 }

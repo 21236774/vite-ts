@@ -16,7 +16,11 @@ export const useStoreTheme = defineStore('useStoreTheme', {
   state: (): State => ({
     theme: 'default',
     darkTheme: null,
-    themeOverrides: {},
+    themeOverrides: {
+      Layout: {
+        color: 'var(--color-bg-main-color)'
+      }
+    },
     color: 'rgba(24, 160, 88, 0.4)'
   }),
   actions: {
@@ -35,6 +39,8 @@ export const useStoreTheme = defineStore('useStoreTheme', {
         setIconColor()
         return
       }
+      console.log(color);
+      
       this.$state.color = color
       // 这里使用replace是区分字体颜色和背景颜色， 背景颜色需要透明
       const textColor = color.replace(',0.2', ',1')

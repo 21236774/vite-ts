@@ -1,18 +1,27 @@
-interface UserModel {
+export interface UserModel {
   userName: string;
   token: string;
   password: string;
+  userRole: string;
 }
 export const userInfo: UserModel[] = [
   {
     userName: 'admin',
     token: 'admin__admin',
-    password: '123'
+    password: '123',
+    userRole: 'admin'
   },
   {
     userName: 'user',
     token: 'user__user',
-    password: '123'
+    password: '123',
+    userRole: 'user'
+  },
+  {
+    userName: 'xdd',
+    token: 'xdd__xdd',
+    password: 'a123',
+    userRole: 'xdd'
   }
 ]
 
@@ -88,6 +97,17 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
           },
         }
       ]
+    }
+  ],
+  xdd: [
+    {
+      name: 'front',
+      path: '/basic/front',
+      component: 'basic',
+      meta: {
+        title: '仪表盘',
+        auth: true
+      }
     }
   ]
 }
