@@ -2,12 +2,13 @@
 // 嵌套路由
 import { NButton, NGrid, NGi, NTimeline, NTimelineItem, NCard } from 'naive-ui'
 import { api } from '@/api/oderview'
-import { useEcharts } from "@/hooks";
+import { useEcharts } from 'vite-vue3-xdd-npm';
 import { lineData, barOptions } from "./config";
+import { useStoreTheme } from '@/store'
 import Table from "./components/Table/index.vue";
-
-const { domRef } = useEcharts(lineData)
-const { domRef: barRef } = useEcharts(barOptions)
+const storeTheme = useStoreTheme()
+const { domRef } = useEcharts(lineData, storeTheme)
+const { domRef: barRef } = useEcharts(barOptions, storeTheme)
 api()
 </script>
 
@@ -37,47 +38,37 @@ api()
   </n-grid>
 
   <n-grid :x-gap="12" :y-gap="12" :cols="4" class="mt-21">
-    <n-gi><div class="h-101 bg-bg-color rounded-2xl box-1 box-color" /></n-gi>
-    <n-gi><div class="h-101 bg-bg-color rounded-2xl box-2 box-color" /></n-gi>
-    <n-gi><div class="h-101 bg-bg-color rounded-2xl box-3 box-color" /></n-gi>
-    <n-gi><div class="h-101 bg-bg-color rounded-2xl box-4 box-color" /></n-gi>
+    <n-gi>
+      <div class="h-101 bg-bg-color rounded-2xl box-1 box-color" />
+    </n-gi>
+    <n-gi>
+      <div class="h-101 bg-bg-color rounded-2xl box-2 box-color" />
+    </n-gi>
+    <n-gi>
+      <div class="h-101 bg-bg-color rounded-2xl box-3 box-color" />
+    </n-gi>
+    <n-gi>
+      <div class="h-101 bg-bg-color rounded-2xl box-4 box-color" />
+    </n-gi>
   </n-grid>
   <n-grid :x-gap="12" :y-gap="12" :cols="4" class="mt-21">
     <n-gi>
       <div class="h-400 bg-bg-color rounded-2xl px-21">
         <n-card title="卡池复刻" :bordered="false" class="bg-bg-color">
           <n-timeline>
-            <n-timeline-item
-              type="success"
-              title="夜阑 | 胡桃"
-              content="3.4下半卡池"
-              time="2023-02-02 18:00"
-            />
-            <n-timeline-item 
-              type="error"
-              title="艾尔海森 | 魈"
-              content="3.4上半卡池"
-              time="2023-01-08 18:00"
-            />
-            <n-timeline-item
-              type="warning"
-              title="神里凌人 | 雷电将军"
-              content="3.4下半卡池"
-              time="2022-12-22 18:00"
-            />
-            <n-timeline-item
-              type="info"
-              title="流浪者散兵 | 荒泷一斗"
-              content="3.3上半卡池"
-              time="2022-12-07 18:00"
-              line-type="dashed"
-            />
+            <n-timeline-item type="success" title="夜阑 | 胡桃" content="3.4下半卡池" time="2023-02-02 18:00" />
+            <n-timeline-item type="error" title="艾尔海森 | 魈" content="3.4上半卡池" time="2023-01-08 18:00" />
+            <n-timeline-item type="warning" title="神里凌人 | 雷电将军" content="3.4下半卡池" time="2022-12-22 18:00" />
+            <n-timeline-item type="info" title="流浪者散兵 | 荒泷一斗" content="3.3上半卡池" time="2022-12-07 18:00"
+              line-type="dashed" />
           </n-timeline>
         </n-card>
       </div>
     </n-gi>
     <n-gi :span="3">
-      <div class="h-400 bg-bg-color rounded-2xl p-21 box-border flex"><Table /></div>
+      <div class="h-400 bg-bg-color rounded-2xl p-21 box-border flex">
+        <Table />
+      </div>
     </n-gi>
   </n-grid>
 </template>
@@ -92,21 +83,29 @@ api()
   border-radius: 10px;
   display: block;
 }
-.box-1:hover,.box-2:hover,.box-3:hover,.box-4:hover {
+
+.box-1:hover,
+.box-2:hover,
+.box-3:hover,
+.box-4:hover {
   background-position: right center;
   color: #fff;
   text-decoration: none;
 }
+
 .box-1 {
-  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
+  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
 }
+
 .box-2 {
-  background-image: linear-gradient(to right, #D66D75 0%, #E29587  51%, #D66D75  100%);
+  background-image: linear-gradient(to right, #D66D75 0%, #E29587 51%, #D66D75 100%);
 }
+
 .box-3 {
-  background-image: linear-gradient(to right, #6190E8 0%, #A7BFE8  51%, #6190E8  100%);
+  background-image: linear-gradient(to right, #6190E8 0%, #A7BFE8 51%, #6190E8 100%);
 }
+
 .box-4 {
-  background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%);
+  background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
 }
 </style>

@@ -4,5 +4,8 @@ const views: { [key: string | number]: any } = {
   front: () => import('./basic/front/index.vue'),
   edit: () => import('./basic/edit/index.vue'),
   basic_list: () => import('./basic/list/index.vue'),
+  basic_markdown: () => import('./basic/plugin/markdown/index.vue'),
+  basic_map: () => import('./basic/plugin/map/index.vue')
 }
 export { views }
+

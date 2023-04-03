@@ -19,6 +19,7 @@ module.exports = {
     },
     extend: { // 扩展
       spacing: {
+        '2': '2px',
         '13': '12px',
         '50': '50px',
         '21': '20px',

@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { setTheme, setIconColor, setThemeOverrides } from '@/theme-pack'
+import { setTheme, setIconColor, setThemeOverrides, themeOverrides } from '@/theme-pack'
 import { darkTheme, GlobalThemeOverrides } from 'naive-ui'
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 import type { StyleName } from '@/theme-pack'
 import type { GlobalTheme } from 'naive-ui'
 
 interface State {
-  theme: string | StyleName,
+  theme: StyleName,
   darkTheme: null | GlobalTheme,
   themeOverrides: GlobalThemeOverrides,
   color: string
@@ -14,13 +14,9 @@ interface State {
 
 export const useStoreTheme = defineStore('useStoreTheme', {
   state: (): State => ({
-    theme: 'default',
+    theme: 'theme',
     darkTheme: null,
-    themeOverrides: {
-      Layout: {
-        color: 'var(--color-bg-main-color)'
-      }
-    },
+    themeOverrides,
     color: 'rgba(24, 160, 88, 0.4)'
   }),
   actions: {
@@ -39,8 +35,6 @@ export const useStoreTheme = defineStore('useStoreTheme', {
         setIconColor()
         return
       }
-      console.log(color);
-      
       this.$state.color = color
       // 这里使用replace是区分字体颜色和背景颜色， 背景颜色需要透明
       const textColor = color.replace(',0.2', ',1')

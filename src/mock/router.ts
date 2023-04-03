@@ -58,6 +58,36 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       ]
     },
     {
+      name: 'plugin',
+      path: '/plugin',
+      component: 'basic',
+      meta: {
+        title: '插件',
+        auth: true
+      },
+      redirect: '/basic/markdown',
+      children: [
+        {
+          name: 'basic_markdown',
+          path: '/basic/markdown',
+          component: 'basic',
+          meta: {
+            title: 'Markdown',
+            auth: true
+          },
+        },
+        {
+          name: 'basic_map',
+          path: '/basic/map',
+          component: 'basic',
+          meta: {
+            title: '高德地图',
+            auth: true
+          },
+        }
+      ]
+    },
+    {
       name: 'edit',
       path: '/basic/edit',
       component: 'basic',

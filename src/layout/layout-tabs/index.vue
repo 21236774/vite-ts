@@ -1,15 +1,17 @@
 <script setup lang="ts">
 
 import { watch, ref } from 'vue'
-import { NTabs, NTabPane } from 'naive-ui'
+import { NTabs, NTabPane, NIcon, NTooltip } from 'naive-ui'
 import { useMessage } from 'naive-ui'
-import { useTab } from '@/store'
+import { useTab, useApp } from '@/store'
 import { type TabActive } from '@/store'
 import { useRouterPush } from '@/hooks'
+import { Refresh } from '@vicons/ionicons5'
 
 const message = useMessage()
 const { routerPush } = useRouterPush()
 const tabStore = useTab()
+const appStore = useApp()
 // 这里直接用的$ref可以不用.value
 // const menuList = $ref([]) 
 // const value = $ref('0')
@@ -45,18 +47,30 @@ watch(() => [tabStore.$state.tabsList, tabStore.$state.tabActive], (newVal) => {
   value.value = newVal[1]?.text
 }, { deep: true, immediate: true })
 
+// 刷新
+const onRefresh = () => {
+  appStore.onRefresh(500)
+}
 
 </script>
 
 <template>
-  <n-tabs
-    v-model:value="value"
-    type="card"
-    closable
-    tab-style="min-width: 80px;"
-    @update:value="updateChange"
-    @close="handleClose"
-  >
-    <n-tab-pane v-for="panel in menuList" :key="panel.key" :name="panel.text" />
-  </n-tabs>
+  <div class="relative">
+    <n-tabs
+      v-model:value="value"
+      type="card"
+      closable
+      tab-style="min-width: 80px;"
+      @update:value="updateChange"
+      @close="handleClose"
+    >
+      <n-tab-pane v-for="panel in menuList" :key="panel.key" :name="panel.text" />
+    </n-tabs>
+    <n-tooltip placement="bottom" trigger="hover">
+      <template #trigger>
+        <n-icon :component="Refresh" size="30" class="text-icon-color absolute top-2 right-21" @click="onRefresh" />
+      </template>
+      <span>重新加载</span>
+    </n-tooltip>
+  </div>
 </template>

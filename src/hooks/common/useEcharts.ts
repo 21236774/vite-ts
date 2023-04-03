@@ -1,7 +1,6 @@
 import { ref, watch, onUnmounted } from 'vue'
 import { useElementSize } from '@vueuse/core';
 import * as echarts from 'echarts/core';
-import { useStoreTheme } from '@/store'
 import {
   BarChart,
   // 系列类型的定义后缀都为 SeriesOption
@@ -54,19 +53,18 @@ echarts.use([
   CanvasRenderer
 ]);
 
+interface ThemeStore {
+  theme: 'theme' | 'dark'
+}
 // 设置echarts图表
-export const useEcharts = (options: ECOption) => {
-  const themeStore = useStoreTheme()
+export const useEcharts = (options: ECOption, themeStore: ThemeStore = { theme: 'theme' }) => {
   const domRef = ref<HTMLElement>()
   const initialSize = { width: 0, height: 0 }
   const { width, height } = useElementSize(domRef, initialSize)
   let myChart: echarts.ECharts | null = null
   // 初始化
-  const init = () => {
+  const init = (theme: 'theme' | 'dark' = 'theme') => {
     if (domRef.value) {
-      const theme = themeStore.darkTheme ? 'dark' : 'light'
-      console.log(theme);
-      
       myChart = echarts.init(domRef.value, theme)
       myChart.setOption({ ...options, backgroundColor: 'transparent' })
     }
@@ -87,16 +85,17 @@ export const useEcharts = (options: ECOption) => {
     init()
   })
 
-  watch(() => themeStore.darkTheme,() => {
+  watch(() => themeStore.theme, (newVal) => {
     destroy()
-    init()
-  })
+    init(newVal)
+  }, { deep: true })
 
   onUnmounted(() => {
     destroy()
   })
 
   return {
-    domRef
+    domRef,
+    init
   }
 }

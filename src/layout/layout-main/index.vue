@@ -1,7 +1,8 @@
 <script setup lang="ts">
-// 嵌套路由
+import { useApp } from "@/store"
+const appStore = useApp()
 </script>
 
 <template>
-  <router-view />
+  <router-view v-if="appStore.refreshFlag" />
 </template>

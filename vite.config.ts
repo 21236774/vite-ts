@@ -2,13 +2,15 @@ import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import Pages from 'vite-plugin-pages'
 import vue from '@vitejs/plugin-vue'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import viteCompression from 'vite-plugin-compression'
 
 // 直接引入path报错，解构就好了
 // loadEnv接收三个参数，第一个是.env后面的名字，第二个是绝对路径，第三个参数是你环境变量名的前缀，在vite中默认是VITE_
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const base = loadEnv(mode, process.cwd(), 'VITE_BASE_URL').VITE_BASE_URL
+  const { VITE_BASE_URL, VITE_LOGO } = loadEnv(mode, process.cwd())
   console.log(command) // 可判断环境
   return {
     resolve: {
@@ -17,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
         '@': resolve(__dirname, './src'),
       },
     },
-    base,
+    base: VITE_BASE_URL,
     server: {
       // 是否自动打开浏览器
       open: false,
@@ -50,12 +52,20 @@ export default defineConfig(({ command, mode }) => {
     },
     plugins: [
       vue({
-        reactivityTransform: true
+        reactivityTransform: true // 设置ref不需.value, 只写成$ref
       }),
       Pages({
         dirs: 'src/views',
         exclude: ['**/components/*.vue']
-      })
+      }),
+      createHtmlPlugin({
+        inject: {
+          data: {
+            title: VITE_LOGO
+          },
+        }
+      }),
+      viteCompression() // 开启gzip压缩
     ]
   }
 })

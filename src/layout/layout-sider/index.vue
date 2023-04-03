@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 // import { storeToRefs } from 'pinia' // 它将为任何响应式属性创建 refs
 import { useRouter } from 'vue-router'
 import { useStoreTheme, useTab, userRoute } from '@/store'
@@ -25,6 +25,7 @@ const menuOptions = ref(routeStore.menu)
 const router = useRouter()
 const themeOverrides = ref(store.$state.themeOverrides)
 const theme = ref(store.$state.darkTheme)
+const siderWidth = ref('240px')
 const path = router.currentRoute.value.path
 
 // 全局挂载消息方法，使得能直接在ts当中使用
@@ -57,6 +58,15 @@ watch(() => tabStore.$state.tabActive, (val) => {
   value.value = val?.key
 }, { deep: true, immediate: true })
 
+const collapsed = (flag: boolean) => {
+  if(flag) siderWidth.value = '64px'
+  else siderWidth.value = '240px'
+}
+
+const siderStyle = computed(() => {
+  return { paddingLeft: siderWidth.value }
+})
+
 </script>
 
 <template>
@@ -71,6 +81,7 @@ watch(() => tabStore.$state.tabActive, (val) => {
           :collapsed-width="64"
           :width="240"
           :native-scrollbar="false"
+          @update:collapsed="collapsed"
         >
           <n-menu
             :default-value="value"
@@ -81,8 +92,8 @@ watch(() => tabStore.$state.tabActive, (val) => {
             @update:value="menuChange"
           />
         </n-layout-sider>
-        <n-layout class="color-text-color color-666666">
-          <div class="bg-bg-color fixed w-full shadow">
+        <n-layout class="color-text-color">
+          <div class="bg-bg-color fixed shadow w-full left-0 layout-and" :style="siderStyle">
             <slot name="tabs"></slot>
           </div>
           <div class="m-21 mt-50">
@@ -98,6 +109,9 @@ watch(() => tabStore.$state.tabActive, (val) => {
 .n-menu-item-content-header {
   text-align: left;
   margin-left: 10px;
+}
+.layout-and {
+  transition: padding-left 0.4s;
 }
 </style>
 

@@ -31,8 +31,8 @@ export const themeColorList: string[] = [
 
 // 这里可以写默认的配置
 export const themeOverrides: GlobalThemeOverrides = {
-  Tabs: {
-    tabColor: 'red'
+  Layout: {
+    color: 'var(--color-bg-main-color)'
   }
 }
 
