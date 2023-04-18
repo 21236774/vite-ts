@@ -7,15 +7,27 @@ import {
   LaptopOutline as LaptopIcon,
   SettingsOutline as SettingsIcon,
   MenuSharp as ListIcon,
+  LogoOctocat as LogoOctocatIcon
 } from '@vicons/ionicons5'
+
+const menuIcon = {
+  LaptopIcon,
+  SettingsIcon,
+  ListIcon,
+  LogoOctocatIcon
+}
+
+const getIcon = (icon: AuthRoute.MenuIcon = 'LogoOctocatIcon') => {
+  return menuIcon[icon]
+}
 
 /** 路由扁平化处理 */
 export const routerFlat = (arr: AuthRoute.Route[]) => {
   const routeFlat: AuthRoute.Route[] = []
   const flatFn = (routerArr: AuthRoute.Route[]) => {
-    routerArr.forEach(el => {
+    routerArr.forEach((el) => {
       routeFlat.push(el)
-      if(el?.children) {
+      if (el?.children) {
         flatFn(el.children)
       }
     })
@@ -24,20 +36,21 @@ export const routerFlat = (arr: AuthRoute.Route[]) => {
   return routeFlat
 }
 
-export function renderIcon (icon: Component) {
+export function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
 /** 权限路由生成菜单 */
 export const routeToMenu = (routeInfo: AuthRoute.Route[]) => {
   const menu: MenuOption[] = []
-  routeInfo.forEach(el => {
+  routeInfo.forEach((el) => {
     let menuChildren: MenuOption[] | undefined = []
     if (el.children) {
-      menuChildren = routeToMenu(el.children);
+      menuChildren = routeToMenu(el.children)
     }
     const obj: MenuOption = {
-      label: () => h(
+      label: () =>
+        h(
           RouterLink,
           {
             to: {
@@ -49,22 +62,24 @@ export const routeToMenu = (routeInfo: AuthRoute.Route[]) => {
       text: el.meta?.title,
       key: el.path,
       path: el.path,
-      icon: renderIcon(LaptopIcon) // 后面在换图标吧
+      icon: renderIcon(getIcon(el.meta?.icon)) // 后面在换图标吧
     }
-    if(menuChildren.length) obj.children = menuChildren
+    if (menuChildren.length) obj.children = menuChildren
     menu.push(obj)
   })
   return menu
 }
 
 /** 路由name匹配对应组件 */
-export const getRouterCom = (routeInfo: AuthRoute.Route[]): AuthRoute.Route[] => {
-  const routerArr:AuthRoute.Route[] = []
-  routeInfo.forEach(el => {
+export const getRouterCom = (
+  routeInfo: AuthRoute.Route[]
+): AuthRoute.Route[] => {
+  const routerArr: AuthRoute.Route[] = []
+  routeInfo.forEach((el) => {
     const obj = { ...el }
     obj.component = views[el.name]
     let routerChildren: AuthRoute.Route[] = []
-    if(obj?.children?.length) {
+    if (obj?.children?.length) {
       routerChildren = getRouterCom(obj.children)
     }
     obj.children = routerChildren

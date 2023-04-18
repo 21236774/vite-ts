@@ -17,27 +17,28 @@ module.exports = {
       'icon-color': 'var(--icon-color)',
       'bg-main-color': 'var(--icon-bg-main-color)'
     },
-    extend: { // 扩展
+    extend: {
+      // 扩展
       spacing: {
-        '2': '2px',
-        '13': '12px',
-        '50': '50px',
-        '21': '20px',
-        '41': '40px',
-        '101': '100px',
-        '201': '200px',
-        '400': '400px'
+        2: '2px',
+        13: '12px',
+        50: '50px',
+        21: '20px',
+        41: '40px',
+        101: '100px',
+        201: '200px',
+        400: '400px'
       },
       lineHeight: {
-        '50': '50px',
+        50: '50px'
       }
-    },
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
   plugins: [],
   corePlugins: {
-    preflight: false,
+    preflight: false
   }
 }

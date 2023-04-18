@@ -3,24 +3,24 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es2021: true,
+    es2021: true
   },
-  parser: 'vue-eslint-parser',
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     // eslint-config-prettier 的缩写
-    'prettier',
+    'prettier'
   ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
   plugins: ['vue', '@typescript-eslint', 'prettier'],
@@ -37,6 +37,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'prettier/prettier': 'error',
+    'vue/multi-word-component-names': 'off',
     // 禁止出现console
     'no-console': 'off',
     // 禁用debugger
@@ -52,7 +53,7 @@ module.exports = {
     // 禁止在 return、throw、continue 和 break 语句之后出现不可达代码
     'no-unreachable': 'warn',
     // 强制所有控制语句使用一致的括号风格
-    curly: 'warn',
+    curly: 'off',
     // 要求 switch 语句中有 default 分支
     'default-case': 'warn',
     // 强制尽可能地使用点号
@@ -88,9 +89,9 @@ module.exports = {
     // 强制数组方括号中使用一致的空格
     'array-bracket-spacing': 'warn',
     // 强制在代码块中使用一致的大括号风格
-    'brace-style': 'warn',
+    'brace-style': 'off',
     // 强制使用骆驼拼写法命名约定
-    camelcase: 'warn',
+    camelcase: 'off',
     // 强制使用一致的缩进
     indent: 'off',
     // 强制在 JSX 属性中一致地使用双引号或单引号
@@ -134,22 +135,13 @@ module.exports = {
     // 强制在 switch 的冒号左右有空格
     'switch-colon-spacing': 'warn',
     // 强制箭头函数的箭头前后使用一致的空格
-    'arrow-spacing': 'warn',
-    'no-var': 'warn',
-    'prefer-const': 'warn',
-    'prefer-rest-params': 'warn',
-    'no-useless-escape': 'warn',
-    'no-irregular-whitespace': 'warn',
-    'no-prototype-builtins': 'warn',
-    'no-fallthrough': 'warn',
-    'no-extra-boolean-cast': 'warn',
-    'no-case-declarations': 'warn',
-    'no-async-promise-executor': 'warn',
+    'arrow-spacing': 'warn'
   },
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',
     defineExpose: 'readonly',
     withDefaults: 'readonly',
-  },
+    AuthRoute: true
+  }
 }

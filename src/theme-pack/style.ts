@@ -1,23 +1,23 @@
-export type StyleName = keyof Style;
+export type StyleName = keyof Style
 export type ThemeColor = 'theme' | 'dark'
 
 interface StyleItem {
-  bg: string,
-  textColor: string,
-  bgOpacity: number,
-  globalColor: string,
-  modalColor: string,
-  activeColor: string,
-  bgMainColor: string,
+  bg: string
+  textColor: string
+  bgOpacity: number
+  globalColor: string
+  modalColor: string
+  activeColor: string
+  bgMainColor: string
 }
 
 export interface Style {
-  theme: StyleItem,
+  theme: StyleItem
   dark: StyleItem
 }
 
 // 颜色主题配置颜色
-export const style:Style = {
+export const style: Style = {
   theme: {
     bg: '#fff', // 盒子背景
     textColor: '#333',

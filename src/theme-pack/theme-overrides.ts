@@ -36,7 +36,10 @@ export const themeOverrides: GlobalThemeOverrides = {
   }
 }
 
-export const setThemeOverrides = (color: string, textColor: string): GlobalThemeOverrides => {
+export const setThemeOverrides = (
+  color: string,
+  textColor: string
+): GlobalThemeOverrides => {
   return {
     Menu: {
       itemColorActive: color,
@@ -50,10 +53,10 @@ export const setThemeOverrides = (color: string, textColor: string): GlobalTheme
       itemIconColorActiveHover: textColor,
       itemIconColorActiveHoverHorizontal: textColor,
       itemIconColorChildActive: textColor,
-      itemIconColorChildActiveHorizontal: textColor,
+      itemIconColorChildActiveHorizontal: textColor
     },
     Icon: {
-      color: textColor,
+      color: textColor
     },
     Button: {
       colorInfo: textColor,
@@ -63,7 +66,7 @@ export const setThemeOverrides = (color: string, textColor: string): GlobalTheme
       colorDisabledInfo: textColor,
       borderInfo: `1px solid ${textColor}`,
       borderHoverInfo: `1px solid ${textColor}`,
-      borderFocusInfo: `1px solid ${textColor}`,
+      borderFocusInfo: `1px solid ${textColor}`
     },
     Tabs: {
       tabTextColorActiveLine: textColor,

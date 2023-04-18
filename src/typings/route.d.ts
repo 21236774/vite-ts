@@ -1,10 +1,9 @@
 /**
  * declare: .d.ts的顶级声明必须以declare开头
  * 以declare声明的变量和模块后，其他地方不需要引入，就可以直接使用了
- * 
+ *
  * namespace: 命名空间，可以防止出现重复的
  */
-
 
 declare namespace AuthRoute {
   /**
@@ -14,20 +13,23 @@ declare namespace AuthRoute {
    * - multi - 多级路由布局(三级路由或三级以上时，除第一级路由和最后一级路由，其余的采用该布局)
    * - self - 作为子路由，使用自身的布局(作为最后一级路由，没有子路由)
    */
-  type RouteComponentType = 'basic' | 'blank' | 'multi' | 'self';
+  type RouteComponentType = 'basic' | 'blank' | 'multi' | 'self'
+
+  type MenuIcon = 'LaptopIcon' | 'SettingsIcon' | 'ListIcon' | 'LogoOctocatIcon'
 
   interface RouteMeta {
     /** 路由标题 */
-    title: string;
-    auth: boolean;
+    title: string
+    auth: boolean
+    icon?: MenuIcon
   }
 
   type Route = {
-    name: string;
-    path: string;
-    redirect?: string;
-    component?: RouteComponentType;
-    children?: Route[];
+    name: string
+    path: string
+    redirect?: string
+    component?: RouteComponentType
+    children?: Route[]
     meta?: RouteMeta
   }
 }

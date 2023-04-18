@@ -1,13 +1,13 @@
 import { ref, watch, onUnmounted } from 'vue'
-import { useElementSize } from '@vueuse/core';
-import * as echarts from 'echarts/core';
+import { useElementSize } from '@vueuse/core'
+import * as echarts from 'echarts/core'
 import {
   BarChart,
   // 系列类型的定义后缀都为 SeriesOption
   BarSeriesOption,
   LineChart,
   LineSeriesOption
-} from 'echarts/charts';
+} from 'echarts/charts'
 import {
   TitleComponent,
   // 组件类型的定义后缀都为 ComponentOption
@@ -23,9 +23,9 @@ import {
   DatasetComponentOption,
   // 内置数据转换器组件 (filter, sort)
   TransformComponent
-} from 'echarts/components';
-import { LabelLayout, UniversalTransition } from 'echarts/features';
-import { CanvasRenderer } from 'echarts/renderers';
+} from 'echarts/components'
+import { LabelLayout, UniversalTransition } from 'echarts/features'
+import { CanvasRenderer } from 'echarts/renderers'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 export type ECOption = echarts.ComposeOption<
@@ -35,7 +35,7 @@ export type ECOption = echarts.ComposeOption<
   | TooltipComponentOption
   | GridComponentOption
   | DatasetComponentOption
->;
+>
 
 // 注册必须的组件
 echarts.use([
@@ -51,13 +51,16 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer
-]);
+])
 
 interface ThemeStore {
   theme: 'theme' | 'dark'
 }
 // 设置echarts图表
-export const useEcharts = (options: ECOption, themeStore: ThemeStore = { theme: 'theme' }) => {
+export const useEcharts = (
+  options: ECOption,
+  themeStore: ThemeStore = { theme: 'theme' }
+) => {
   const domRef = ref<HTMLElement>()
   const initialSize = { width: 0, height: 0 }
   const { width, height } = useElementSize(domRef, initialSize)
@@ -77,7 +80,7 @@ export const useEcharts = (options: ECOption, themeStore: ThemeStore = { theme: 
 
   // 销毁
   const destroy = () => {
-    myChart?.dispose();
+    myChart?.dispose()
   }
 
   watch([width, height], () => {
@@ -85,10 +88,14 @@ export const useEcharts = (options: ECOption, themeStore: ThemeStore = { theme: 
     init()
   })
 
-  watch(() => themeStore.theme, (newVal) => {
-    destroy()
-    init(newVal)
-  }, { deep: true })
+  watch(
+    () => themeStore.theme,
+    (newVal) => {
+      destroy()
+      init(newVal)
+    },
+    { deep: true }
+  )
 
   onUnmounted(() => {
     destroy()

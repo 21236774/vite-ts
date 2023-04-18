@@ -1,10 +1,10 @@
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router'
 import { setCookie, removeStorage } from '@/utils'
-import type { RouteLocationRaw } from "vue-router";
+import type { RouteLocationRaw } from 'vue-router'
 /**
  * 路由跳转
  * @param inSetup - 是否在vue页面/组件的setup里面调用，在axios里面无法使用useRouter和useRoute
-*/
+ */
 export function useRouterPush(inSetup = true) {
   const router = useRouter()
   /**
@@ -13,11 +13,11 @@ export function useRouterPush(inSetup = true) {
    * @param newTab - 是否在新的浏览器Tab标签打开
    */
   const routerPush = (to: RouteLocationRaw, newTab = false) => {
-    console.log(to);
+    console.log(to)
 
-    if(newTab) {
-      const routerData = router.resolve(to);
-      window.open(routerData.href, '_blank');
+    if (newTab) {
+      const routerData = router.resolve(to)
+      window.open(routerData.href, '_blank')
     } else {
       router.push(to)
     }
@@ -33,7 +33,7 @@ export function useRouterPush(inSetup = true) {
 
   /** 返回上一级路由 */
   function routerBack() {
-    router.go(-1);
+    router.go(-1)
   }
 
   /** 退出登录 */
@@ -49,5 +49,4 @@ export function useRouterPush(inSetup = true) {
     routerBack,
     goLogout
   }
-
 }

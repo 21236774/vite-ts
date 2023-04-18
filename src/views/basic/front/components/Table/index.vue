@@ -55,23 +55,22 @@ const createData = (): RowData[] => [
   }
 ]
 
-
 const ShowOrEdit = defineComponent({
   props: {
     value: [String, Number],
     onUpdateValue: [Function, Array]
   },
-  setup (props) {
+  setup(props) {
     const isEdit = ref(false)
     const inputRef = ref(null)
     const inputValue = ref(props.value)
-    function handleOnClick () {
+    function handleOnClick() {
       isEdit.value = true
       nextTick(() => {
         inputRef.value.focus()
       })
     }
-    function handleChange () {
+    function handleChange() {
       props.onUpdateValue(inputValue.value)
       isEdit.value = false
     }
@@ -84,14 +83,14 @@ const ShowOrEdit = defineComponent({
         },
         isEdit.value
           ? h(NInput, {
-            ref: inputRef,
-            value: inputValue.value,
-            onUpdateValue: (v) => {
-              inputValue.value = v
-            },
-            onChange: handleChange,
-            onBlur: handleChange
-          })
+              ref: inputRef,
+              value: inputValue.value,
+              onUpdateValue: (v) => {
+                inputValue.value = v
+              },
+              onChange: handleChange,
+              onBlur: handleChange
+            })
           : props.value
       )
   }
@@ -101,10 +100,10 @@ const createColumns = (): DataTableColumns<RowData> => [
   {
     title: 'Name',
     key: 'name',
-    render (row, index) {
+    render(row, index) {
       return h(ShowOrEdit, {
         value: row.name,
-        onUpdateValue (v: string) {
+        onUpdateValue(v: string) {
           data.value[index].name = v
         }
       })
@@ -113,10 +112,10 @@ const createColumns = (): DataTableColumns<RowData> => [
   {
     title: 'Age',
     key: 'age',
-    render (row, index) {
+    render(row, index) {
       return h(ShowOrEdit, {
         value: row.age,
-        onUpdateValue (v: string) {
+        onUpdateValue(v: string) {
           data.value[index].age = v
         }
       })
@@ -125,10 +124,10 @@ const createColumns = (): DataTableColumns<RowData> => [
   {
     title: 'Address',
     key: 'address',
-    render (row, index) {
+    render(row, index) {
       return h(ShowOrEdit, {
         value: row.address,
-        onUpdateValue (v: string) {
+        onUpdateValue(v: string) {
           data.value[index].address = v
         }
       })

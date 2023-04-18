@@ -1,4 +1,3 @@
-
 export const setStorage = (key: string, value: any) => {
   localStorage.setItem(key, JSON.stringify(value))
 }
@@ -22,4 +21,3 @@ export const getSessionStorage = (key: string) => {
 export const removeSessionStorage = (key: string) => {
   sessionStorage.removeItem(key)
 }
-

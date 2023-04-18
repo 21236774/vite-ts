@@ -4,8 +4,10 @@ import Pages from 'vite-plugin-pages'
 import vue from '@vitejs/plugin-vue'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
+import viteEslint from 'vite-plugin-eslint'
+import mars3dCesium from 'vite-plugin-mars3d'
 
-// 直接引入path报错，解构就好了
+// 直接引入path报错，解构就好了aa
 // loadEnv接收三个参数，第一个是.env后面的名字，第二个是绝对路径，第三个参数是你环境变量名的前缀，在vite中默认是VITE_
 
 // https://vitejs.dev/config/
@@ -16,8 +18,8 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       // 目录别名
       alias: {
-        '@': resolve(__dirname, './src'),
-      },
+        '@': resolve(__dirname, './src')
+      }
     },
     base: VITE_BASE_URL,
     server: {
@@ -39,14 +41,17 @@ export default defineConfig(({ command, mode }) => {
           target: 'http://jsonplaceholder.typicode.com',
           changeOrigin: true
         }
-      },
+      }
     },
     // 配置less全局变量
     css: {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
-          additionalData: `@import "${resolve(__dirname, 'src/assets/styles/main.less')}";`
+          additionalData: `@import "${resolve(
+            __dirname,
+            'src/assets/styles/main.less'
+          )}";`
         }
       }
     },
@@ -54,6 +59,8 @@ export default defineConfig(({ command, mode }) => {
       vue({
         reactivityTransform: true // 设置ref不需.value, 只写成$ref
       }),
+      mars3dCesium(),
+      viteEslint({ failOnError: false }),
       Pages({
         dirs: 'src/views',
         exclude: ['**/components/*.vue']
@@ -62,7 +69,7 @@ export default defineConfig(({ command, mode }) => {
         inject: {
           data: {
             title: VITE_LOGO
-          },
+          }
         }
       }),
       viteCompression() // 开启gzip压缩

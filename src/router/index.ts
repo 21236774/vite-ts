@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { views } from '@/views'
 // import routes from '~pages'
-import type { App } from 'vue';
+import type { App } from 'vue'
 import { createRouterGuard } from './guard'
 
 // 初始路由
@@ -34,8 +34,8 @@ export const routeCom = routes.map((item) => {
 
 export const router = createRouter({
   history: createWebHashHistory(), // HashHistory
-  // @ts-ignore 
-  routes: routeCom,
+  // @ts-ignore
+  routes: routeCom
 })
 
 export const setupRouter = (app: App) => {

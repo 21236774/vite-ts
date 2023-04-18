@@ -10,14 +10,14 @@ export const useStoreAuth = defineStore('userAuth', {
   getters: {
     /** 是否登录 */
     isLogin(state) {
-      return Boolean(state.token);
+      return Boolean(state.token)
     }
   },
   actions: {
     /** 根据token进行登录 */
     loginToken(token: string) {
-      const info = userInfo.find(el => el.token === token)
-      if(info) {
+      const info = userInfo.find((el) => el.token === token)
+      if (info) {
         this.userInfo = info
         this.token = info.token
         return true
@@ -25,11 +25,14 @@ export const useStoreAuth = defineStore('userAuth', {
       return false
     },
     /** 根据账号密码进行登录 */
-    userPwdLogin(info: { account: string | number, password: string | number }): boolean {
+    userPwdLogin(info: {
+      account: string | number
+      password: string | number
+    }): boolean {
       const { account, password } = info
-      const infoData = userInfo.find(el => el.userName === account)
-      if(infoData) {
-        if(password === infoData.password) {
+      const infoData = userInfo.find((el) => el.userName === account)
+      if (infoData) {
+        if (password === infoData.password) {
           this.userInfo = infoData
           setCookie('token', infoData.token, 1)
           setStorage('userInfo', infoData)
@@ -37,6 +40,6 @@ export const useStoreAuth = defineStore('userAuth', {
         }
       }
       return false
-    },
+    }
   }
 })

@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n'
-import type { App } from 'vue';
+import type { App } from 'vue'
 import { en, zh } from './lang'
 
 export const setupLanguage = (app: App) => {

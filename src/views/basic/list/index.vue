@@ -1,8 +1,42 @@
 <script setup lang="ts">
-import Mallki from "@/components/TextHoverEffect/index.vue";
-import { useI18n } from "vue-i18n";
-import { NGrid, NGi } from "naive-ui";
+import Mallki from '@/components/TextHoverEffect/index.vue'
+import { useI18n } from 'vue-i18n'
+import { NGrid, NGi } from 'naive-ui'
 const { locale } = useI18n()
+
+let name = 'xdd',
+  age = 18,
+  money = 0
+let msg = `${name}今年${age},存款${money}元`
+console.log(msg)
+let msgTitle = ''
+const effect = () => (msgTitle = `${name}今年${age},存款${money}元`)
+
+const arr = new Set()
+// 跟踪
+const track = () => {
+  arr.add(effect)
+}
+
+const trigger = () => {
+  arr.forEach((el) => el())
+}
+
+const reactive = (target) => {
+  const handler = {
+    get(target, key, receiver) {},
+    set(target, key, value) {}
+  }
+}
+
+track()
+money = 300
+trigger()
+console.log('msgTitle: ', msgTitle)
+money = 600
+trigger()
+
+console.log('msgTitle: ', msgTitle)
 </script>
 
 <template>
@@ -11,7 +45,7 @@ const { locale } = useI18n()
       <div class="h-400 bg-bg-color rounded-2xl p-21 box-border">
         <mallki class="name" text="迁徒-admin" />
         <div>死亡如风，常伴吾声</div>
-        <div>{{ locale }}</div>
+        <div>{{ msgTitle }}</div>
         <div class="back">
           <div class="box"></div>
         </div>

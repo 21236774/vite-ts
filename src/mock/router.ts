@@ -1,8 +1,8 @@
 export interface UserModel {
-  userName: string;
-  token: string;
-  password: string;
-  userRole: string;
+  userName: string
+  token: string
+  password: string
+  userRole: string
 }
 export const userInfo: UserModel[] = [
   {
@@ -33,7 +33,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '仪表盘',
-        auth: true
+        auth: true,
+        icon: 'LaptopIcon'
       }
     },
     {
@@ -42,7 +43,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '列表',
-        auth: true
+        auth: true,
+        icon: 'ListIcon'
       },
       redirect: '/basic/list',
       children: [
@@ -53,7 +55,7 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
           meta: {
             title: '列表搜索',
             auth: true
-          },
+          }
         }
       ]
     },
@@ -74,7 +76,7 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
           meta: {
             title: 'Markdown',
             auth: true
-          },
+          }
         },
         {
           name: 'basic_map',
@@ -83,7 +85,16 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
           meta: {
             title: '高德地图',
             auth: true
-          },
+          }
+        },
+        {
+          name: 'gis_map',
+          path: '/basic/gis-map',
+          component: 'basic',
+          meta: {
+            title: 'GIS地图',
+            auth: true
+          }
         }
       ]
     },
@@ -93,7 +104,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '系统设置',
-        auth: true
+        auth: true,
+        icon: 'SettingsIcon'
       }
     }
   ],
@@ -104,7 +116,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '仪表盘',
-        auth: true
+        auth: true,
+        icon: 'LaptopIcon'
       }
     },
     {
@@ -113,7 +126,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '列表',
-        auth: true
+        auth: true,
+        icon: 'ListIcon'
       },
       redirect: '/basic/list',
       children: [
@@ -124,7 +138,7 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
           meta: {
             title: '列表搜索',
             auth: true
-          },
+          }
         }
       ]
     }
@@ -136,7 +150,8 @@ export const infoRouter: { [key: string]: AuthRoute.Route[] } = {
       component: 'basic',
       meta: {
         title: '仪表盘',
-        auth: true
+        auth: true,
+        icon: 'LaptopIcon'
       }
     }
   ]

@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 export interface TabActive {
-  key: string,
-  text: string,
+  key: string
+  text: string
   path: string
 }
 
 interface Store {
-  tabsList: TabActive[],
+  tabsList: TabActive[]
   tabActive?: TabActive
 }
 
@@ -27,18 +27,18 @@ export const useTab = defineStore('useTab', {
     },
     // 删除其中一项
     delTabsList(key: string) {
-      const arr = this.tabsList.filter(element => element.key !== key)
-      if(key === this.tabActive?.key) {
+      const arr = this.tabsList.filter((element) => element.key !== key)
+      if (key === this.tabActive?.key) {
         this.tabActive = arr[arr.length - 1]
       }
       this.tabsList = arr
     },
     // 更新tab、判断是否存在，存在则跳转，不存在添加后跳转
     updateTabs(params: TabActive | undefined) {
-      if(!params) return
+      if (!params) return
       this.tabActive = params
-      const obj = this.tabsList.find(el => el.key === params.key)
-      if(!obj) this.tabsList.push(params)
+      const obj = this.tabsList.find((el) => el.key === params.key)
+      if (!obj) this.tabsList.push(params)
     }
   }
 })

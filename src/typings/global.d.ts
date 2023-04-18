@@ -1,4 +1,3 @@
-
 interface Window {
   messageApi: any
 }
@@ -8,5 +7,5 @@ declare namespace Common {
    * 策略模式
    * [状态, 为true时执行的回调函数]
    */
-  type StrategyActions = [boolean, () => void];
+  type StrategyActions = [boolean, () => void]
 }

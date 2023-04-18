@@ -10,7 +10,8 @@ import { NMessageProvider } from 'naive-ui'
 
 <style>
 @import url('./assets/styles/index.css');
-html,body {
+html,
+body {
   height: 100%;
   overflow: hidden;
 }

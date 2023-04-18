@@ -1,16 +1,20 @@
 // 登录许可证-登录的一些条件
-import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router' 
+import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 import { getCookie } from '@/utils'
 import { dynamicGuard } from './dynamic'
 
 // 路由拦截
-export const permissionGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+export const permissionGuard = (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) => {
   // 未登录、权限页面、
   const isLogin = Boolean(getCookie('token')) // 是否登录
   const permissions = dynamicGuard(to, from, next) // 判断是否登录正确
   const needLogin = Boolean(to.meta.auth) // 是否需求登录权限的页面
-  if(permissions) return
-  
+  if (permissions) return
+
   const arr: Common.StrategyActions[] = [
     [
       isLogin && to.name === 'login',
@@ -49,8 +53,8 @@ export const permissionGuard = (to: RouteLocationNormalized, from: RouteLocation
       }
     ]
   ]
-  
-  arr.some(el => {
+
+  arr.some((el) => {
     const [flag, action] = el
     flag && action()
     return flag

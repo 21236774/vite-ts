@@ -3,5 +3,5 @@ import MapContainer from '@/components/MapContainer/index.vue'
 </script>
 
 <template>
-  <MapContainer/>
+  <MapContainer />
 </template>

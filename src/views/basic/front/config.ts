@@ -1,4 +1,4 @@
-import { type ECOption } from "@/hooks";
+import { type ECOption } from '@/hooks'
 export const lineData: ECOption = {
   tooltip: {
     trigger: 'axis',
@@ -22,7 +22,18 @@ export const lineData: ECOption = {
     {
       type: 'category',
       boundaryGap: false,
-      data: ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '24:00']
+      data: [
+        '06:00',
+        '08:00',
+        '10:00',
+        '12:00',
+        '14:00',
+        '16:00',
+        '18:00',
+        '20:00',
+        '22:00',
+        '24:00'
+      ]
     }
   ],
   yAxis: [

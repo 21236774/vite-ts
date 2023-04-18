@@ -10,12 +10,12 @@ import LayoutTabs from './layout-tabs/index.vue'
   <LayoutSider>
     <template #header>
       <LayoutHeader>
-        <LayoutEdit/>
+        <LayoutEdit />
       </LayoutHeader>
     </template>
     <template #tabs>
-      <LayoutTabs/>
+      <LayoutTabs />
     </template>
-    <LayoutMain/>
+    <LayoutMain />
   </LayoutSider>
 </template>
