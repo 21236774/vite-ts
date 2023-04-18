@@ -4,7 +4,6 @@ import Pages from 'vite-plugin-pages'
 import vue from '@vitejs/plugin-vue'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
-import viteEslint from 'vite-plugin-eslint'
 import mars3dCesium from 'vite-plugin-mars3d'
 
 // 直接引入path报错，解构就好了aa
@@ -60,7 +59,6 @@ export default defineConfig(({ command, mode }) => {
         reactivityTransform: true // 设置ref不需.value, 只写成$ref
       }),
       mars3dCesium(),
-      viteEslint({ failOnError: false }),
       Pages({
         dirs: 'src/views',
         exclude: ['**/components/*.vue']
