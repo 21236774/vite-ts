@@ -7,8 +7,14 @@
     "build": "vite build",
     "preview": "vite preview --port 3002",
     "prepare": "husky install",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix --quiet ./",
+    "lint-staged": "lint-staged",
     "add-pre-commit": "npx husky add .husky/pre-commit 'npm run lint'"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue}": [
+      "eslint  --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",

@@ -7,7 +7,7 @@ export const setCookie = (name: string, value: string, time: number) => {
 
 // 获取cookie
 export const getCookie = <T>(name: T) => {
-  const arr = document.cookie.match(
+  var arr = document.cookie.match(
     new RegExp('(^| )' + name + '=([^;]*)(;|$)')
   )
   // 读取cookie          unescape() 解码操作
