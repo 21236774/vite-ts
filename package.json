@@ -7,13 +7,13 @@
     "build": "vite build",
     "preview": "vite preview --port 3002",
     "prepare": "husky install",
+    "lint": "eslint . --fix",
     "lint-staged": "lint-staged",
     "add-pre-commit": "npx husky add .husky/pre-commit 'npm run lint'"
   },
   "lint-staged": {
     "**/*.{js,ts,vue}": [
-      "eslint  --fix",
-      "prettier --write"
+      "npm run lint"
     ]
   },
   "dependencies": {

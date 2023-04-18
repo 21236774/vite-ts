@@ -1,6 +1,6 @@
 // 设置cookie
 export const setCookie = (name: string, value: string, time: number) => {
-  var exp = new Date()
+  let exp = new Date()
   exp.setTime(exp.getTime() + time * 60 * 24 * 60 * 1000) // 这里的time就是天数 escape()编码
   document.cookie = name + '=' + escape(value) + ';expires=' + exp.toUTCString()
 }
