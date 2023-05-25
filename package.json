@@ -28,7 +28,8 @@
     "vditor": "^3.9.1",
     "vue": "^3.2.25",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.2",
+    "xdd-ui": "0.0.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",

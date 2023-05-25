@@ -56,7 +56,7 @@ echarts.use([
 interface ThemeStore {
   theme: 'theme' | 'dark'
 }
-// 设置echarts图表
+
 export const useEcharts = (
   options: ECOption,
   themeStore: ThemeStore = { theme: 'theme' }

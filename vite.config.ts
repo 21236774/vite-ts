@@ -3,6 +3,7 @@ import { defineConfig, loadEnv } from 'vite'
 import Pages from 'vite-plugin-pages'
 import vue from '@vitejs/plugin-vue'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import viteEslint from 'vite-plugin-eslint'
 import viteCompression from 'vite-plugin-compression'
 import mars3dCesium from 'vite-plugin-mars3d'
 
@@ -44,6 +45,7 @@ export default defineConfig(({ command, mode }) => {
     },
     // 配置less全局变量
     css: {
+      extract: false,
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
@@ -62,6 +64,9 @@ export default defineConfig(({ command, mode }) => {
       Pages({
         dirs: 'src/views',
         exclude: ['**/components/*.vue']
+      }),
+      viteEslint({
+        failOnError: false
       }),
       createHtmlPlugin({
         inject: {
