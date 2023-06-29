@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
-import { NTabs, NTabPane, NIcon, NTooltip } from 'naive-ui'
+import { NTabs, NTab, NIcon, NTooltip } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { useTab, useApp } from '@/store'
 import { type TabActive } from '@/store'
@@ -59,7 +59,7 @@ const onRefresh = () => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative z-10">
     <n-tabs
       v-model:value="value"
       type="card"
@@ -68,8 +68,9 @@ const onRefresh = () => {
       @update:value="updateChange"
       @close="handleClose"
     >
-      <n-tab-pane
+      <n-tab
         v-for="panel in menuList"
+        v-show="panel"
         :key="panel.key"
         :name="panel.text"
       />

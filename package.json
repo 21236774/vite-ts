@@ -21,15 +21,14 @@
     "@vueuse/core": "^9.10.0",
     "axios": "^0.27.2",
     "mars3d": "^3.1.16",
-    "mars3d-cesium": "1.103.1",
+    "mars3d-cesium": "1.106.0",
     "mitt": "^3.0.0",
     "pinia": "^2.0.16",
     "serve-static": "^1.15.0",
     "vditor": "^3.9.1",
     "vue": "^3.2.25",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.1.2",
-    "xdd-ui": "0.0.12"
+    "vue-router": "^4.1.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
@@ -68,6 +67,7 @@
     "vite-plugin-vue-layouts": "^0.6.0",
     "vite-vue3-xdd-npm": "0.0.5",
     "vue-eslint-parser": "^9.1.1",
-    "vue-tsc": "^0.34.7"
+    "vue-tsc": "^0.34.7",
+    "xdd-ui": "0.0.18"
   }
 }

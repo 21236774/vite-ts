@@ -93,7 +93,7 @@ const siderStyle = computed(() => {
       >
         <n-layout-sider
           show-trigger
-          class="h-full bg-bg-color"
+          class="h-full bg-bg-color z-20"
           collapse-mode="width"
           :collapsed-width="64"
           :width="240"
@@ -111,7 +111,7 @@ const siderStyle = computed(() => {
         </n-layout-sider>
         <n-layout class="color-text-color">
           <div
-            class="bg-bg-color fixed shadow w-full left-0 layout-and"
+            class="bg-bg-color fixed z-10 shadow w-full left-0 layout-and"
             :style="siderStyle"
           >
             <slot name="tabs"></slot>
