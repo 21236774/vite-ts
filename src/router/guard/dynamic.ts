@@ -12,7 +12,7 @@ export const dynamicGuard = async (
   const store = userRoute()
 
   const redirect =
-    to.path === '/' ? import.meta.env.VITE_ROUTE_HOME_PATH : to.path
+    to.path === '/' ? import.meta.env.VITE_ROUTE_HOME_PATH : to.fullPath
   if (!store.routeAuth) {
     // 没有登录回登录页
     if (!token) {
@@ -21,7 +21,7 @@ export const dynamicGuard = async (
       return true
     }
     if (to.name === '404') next(false)
-    await store.handleAuthRoute(to.fullPath)
+    await store.handleAuthRoute(redirect)
     if (store.routeAuthNum) {
       next('/login')
       return true
@@ -34,7 +34,7 @@ export const dynamicGuard = async (
   // 权限路由已经加载，仍然未找到，重定向到404
   if (to.name === '404') {
     next({ name: '404', replace: true })
-    console.log(777);
+    console.log(777)
     return false
   }
   return false
