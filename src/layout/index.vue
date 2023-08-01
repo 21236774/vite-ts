@@ -4,6 +4,9 @@ import LayoutSider from './layout-sider/index.vue'
 import LayoutEdit from './layout-edit/index.vue'
 import LayoutHeader from './layout-header/index.vue'
 import LayoutTabs from './layout-tabs/index.vue'
+import { useStoreAuth } from '@/store'
+const authStore = useStoreAuth()
+authStore.loginToken()
 </script>
 
 <template>

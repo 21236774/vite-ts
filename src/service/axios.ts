@@ -1,5 +1,8 @@
 // index.ts
 import axios from 'axios'
+import { getCookie } from '@/utils'
+import { useRouterPush } from '@/hooks'
+
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 type Result<T> = {
@@ -13,16 +16,16 @@ class Request {
   instance: AxiosInstance
   // 基础配置，url和超时时间
   // baseURL 请求路径
-  baseConfig: AxiosRequestConfig = { baseURL: '', timeout: 10000 }
+  baseConfig: AxiosRequestConfig = { baseURL: '', timeout: 2000 }
 
   constructor(config: AxiosRequestConfig) {
     // 使用axios.create创建axios实例
     this.instance = axios.create(Object.assign(this.baseConfig, config))
-
+    const { goLogout } = useRouterPush()
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         // 一般会请求拦截里面加token，用于后端的验证
-        const token = localStorage.getItem('token') as string
+        const token = getCookie('token') as string
         if (token) {
           config.headers!.Authorization = token
         }
@@ -39,7 +42,7 @@ class Request {
       (res: AxiosResponse) => {
         // 直接返回res，当然你也可以只返回res.data
         // 系统如果有自定义code也可以在这里处理
-        return res
+        return res.data
       },
       (err: any) => {
         // 这里用来处理http常见错误，进行全局提示
@@ -52,6 +55,7 @@ class Request {
           case 401:
             message = '未授权，请重新登录(401)'
             // 这里可以做清空storage并跳转到登录页的操作
+            goLogout()
             break
           case 403:
             message = '拒绝访问(403)'
@@ -97,10 +101,7 @@ class Request {
     return this.instance.request(config)
   }
 
-  public get<T = any>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<Result<T>>> {
+  public get(url: string, config?: AxiosRequestConfig): Promise<ApiData> {
     return this.instance.get(url, config)
   }
 
@@ -108,7 +109,7 @@ class Request {
     url: string,
     data?: any,
     config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<Result<T>>> {
+  ): Promise<ApiData> {
     return this.instance.post(url, data, config)
   }
 

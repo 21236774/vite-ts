@@ -85,6 +85,5 @@ export const getRouterCom = (
     obj.children = routerChildren
     routerArr.push(obj)
   })
-
   return routerArr
 }

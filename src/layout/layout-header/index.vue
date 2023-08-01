@@ -9,7 +9,7 @@ import {
   LanguageOutline
 } from '@vicons/ionicons5'
 import { FullscreenOutlined } from '@vicons/antd'
-import { useStoreTheme, userRoute, useTab } from '@/store'
+import { useStoreTheme, userRoute, useTab, useStoreAuth } from '@/store'
 import {
   NLayoutHeader,
   NButton,
@@ -21,12 +21,14 @@ import {
 } from 'naive-ui'
 import type { DropdownOption } from 'naive-ui'
 import type { ThemeColor } from '@/theme-pack'
+import Mallki from '@/components/TextHoverEffect/index.vue'
 import { useRouterPush } from '@/hooks'
 import { useFullscreen } from '@vueuse/core'
 
 const store = useStoreTheme()
 const storeRoute = userRoute()
 const storeTab = useTab()
+const storeUath = useStoreAuth()
 const { goLogout } = useRouterPush()
 const { toggle } = useFullscreen()
 const { t, locale } = useI18n()
@@ -133,6 +135,10 @@ watch(
       {{ log }}
     </div>
     <div class="flex items-center">
+      <mallki
+        class="name mr-13"
+        :text="`欢迎：${storeUath.userInfo?.userName || '用户'}`"
+      />
       <n-tooltip placement="bottom" trigger="hover">
         <template #trigger>
           <n-button quaternary @click="update()">{{
@@ -153,7 +159,7 @@ watch(
         </template>
         <span>{{ t('headers.fullScreen') }}</span>
       </n-tooltip>
-      <n-dropdown :options="langOptions" @Select="onLangSelect">
+      <n-dropdown :options="langOptions" @select="onLangSelect">
         <n-icon
           :component="LanguageOutline"
           class="cursor-pointer mr-4"
@@ -161,7 +167,7 @@ watch(
           :size="30"
         />
       </n-dropdown>
-      <n-dropdown :options="options" @Select="onSelect">
+      <n-dropdown :options="options" @select="onSelect">
         <span class="flex items-center cursor-pointer"
           ><n-avatar
             class="mx-4"

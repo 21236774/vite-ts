@@ -27,7 +27,7 @@ const { routerPush } = useRouterPush()
 
 const formValue = ref({
   user: {
-    account: '',
+    name: '',
     password: ''
   }
 })
@@ -46,14 +46,11 @@ const rules = { user: { account, password } }
 
 const handleValidateClick = (e?: MouseEvent): void => {
   e && e.preventDefault()
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(async (errors) => {
     if (!errors) {
-      const {
-        account,
-        password
-      }: { account: string | number; password: string | number } =
-        formValue.value.user
-      const isLogin = store.userPwdLogin({ account, password })
+      const { name, password }: User.UserInfo = formValue.value.user
+      const isLogin = await store.userPwdLogin({ name, password })
+      console.log(isLogin)
       if (isLogin) {
         message.success('登录成功')
         if (router.query?.redirect)
@@ -87,9 +84,9 @@ const handleKeyup = (e: KeyboardEvent): void => {
       label-align="left"
       size="medium"
     >
-      <n-form-item label="账号" path="user.account">
+      <n-form-item label="账号" path="user.name">
         <n-input
-          v-model:value="formValue.user.account"
+          v-model:value="formValue.user.name"
           placeholder="输入账号"
         />
       </n-form-item>

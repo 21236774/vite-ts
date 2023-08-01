@@ -27,7 +27,7 @@ specifiers:
   lint-staged: ^13.2.1
   lodash-es: ^4.17.21
   mars3d: ^3.1.16
-  mars3d-cesium: 1.103.1
+  mars3d-cesium: 1.106.0
   mitt: ^3.0.0
   naive-ui: ^2.31.0
   pinia: ^2.0.16
@@ -58,8 +58,8 @@ dependencies:
   '@turf/turf': 6.5.0
   '@vueuse/core': 9.13.0_vue@3.3.4
   axios: 0.27.2
-  mars3d: 3.5.8_6kcrfjjjhqmzvvrqwvmew2oghi
-  mars3d-cesium: 1.103.1
+  mars3d: 3.5.8_fenjji2ryokordniurvd2avjwq
+  mars3d-cesium: 1.106.0
   mitt: 3.0.0
   pinia: 2.1.3_typescript@4.9.5+vue@3.3.4
   serve-static: 1.15.0
@@ -165,23 +165,23 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@cesium/engine/2.1.0:
-    resolution: {integrity: sha512-U80bWcu+SmJYH/5nzowHcJI093qTkOd8wYj54Hgj7PKk1QhFKfE+oLCb8F577wAvwptoEZ57CdR4KgJNLGO1SA==}
+  /@cesium/engine/2.4.1:
+    resolution: {integrity: sha512-8f0hBzhPUSimYLZ+cmQ0rSudm+8zYD3sBMvJcPSVt0wDpLT7tvBt9swC2v5qC2gOwGOeyFnJhXKes3ICE6SaDA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@tweenjs/tween.js': 18.6.4
       '@zip.js/zip.js': 2.4.26
       autolinker: 4.0.0
       bitmap-sdf: 1.0.4
-      dompurify: 2.4.5
+      dompurify: 3.0.5
       earcut: 2.2.4
       grapheme-splitter: 1.0.4
       jsep: 1.3.8
-      kdbush: 3.0.0
-      ktx-parse: 0.4.5
+      kdbush: 4.0.2
+      ktx-parse: 0.5.0
       lerc: 2.0.0
       mersenne-twister: 1.1.0
-      meshoptimizer: 0.18.1
+      meshoptimizer: 0.19.0
       pako: 2.1.0
       protobufjs: 7.2.3
       rbush: 3.0.1
@@ -189,11 +189,11 @@ packages:
       urijs: 1.19.11
     dev: false
 
-  /@cesium/widgets/2.1.0:
-    resolution: {integrity: sha512-/sdDNr8nJMALjzHBdeeFdIxakP/9DbTccDouQWjOvpOj2aVe5iFNQWkYULssV38ywp2JEqmhvF5+eHsT0PAjPA==}
+  /@cesium/widgets/2.3.1:
+    resolution: {integrity: sha512-KC/GtcrS2t9Vf710C5a0ArG9ZawVeUhA37ISzFSCqVoAmlNd2YAjv00SZZOMtFqjMFWr7sOcm3BwMjWXnTWjvw==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 2.1.0
+      '@cesium/engine': 2.4.1
       nosleep.js: 0.12.0
     dev: false
 
@@ -2763,8 +2763,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify/2.4.5:
-    resolution: {integrity: sha512-jggCCd+8Iqp4Tsz0nIvpcb22InKEBrGz5dw3EQJMs8HPJDsKbFIO3STYtAvCfDx26Muevn1MHVI0XxjgFfmiSA==}
+  /dompurify/3.0.5:
+    resolution: {integrity: sha512-F9e6wPGtY+8KNMRAVfxeCOHU0/NPWMSENNq4pQctuXRqqdEPW7q3CrLbR5Nse044WwacyjHGOMlvNsBe1y6z9A==}
     dev: false
 
   /domutils/2.8.0:
@@ -4031,8 +4031,8 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  /kdbush/3.0.0:
-    resolution: {integrity: sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==}
+  /kdbush/4.0.2:
+    resolution: {integrity: sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==}
     dev: false
 
   /kind-of/6.0.3:
@@ -4040,8 +4040,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ktx-parse/0.4.5:
-    resolution: {integrity: sha512-MK3FOody4TXbFf8Yqv7EBbySw7aPvEcPX++Ipt6Sox+/YMFvR5xaTyhfNSk1AEmMy+RYIw81ctN4IMxCB8OAlg==}
+  /ktx-parse/0.5.0:
+    resolution: {integrity: sha512-5IZrv5s1byUeDTIee1jjJQBiD5LPDB0w9pJJ0oT9BCKKJf16Tuj123vm1Ps0GOHSHmeWPgKM0zuViCVuTRpqaA==}
     dev: false
 
   /lerc/2.0.0:
@@ -4257,22 +4257,22 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /mars3d-cesium/1.103.1:
-    resolution: {integrity: sha512-/aMq4+Fn+56kOKvzYINg/edzqIeTO2Qdiz79ZZYlNc1VcPhAFm7j3ZwBb+Cm3/QkD3ioX38sXwczq/lf8d6u1g==}
+  /mars3d-cesium/1.106.0:
+    resolution: {integrity: sha512-tmG8xgPqQ2uAFvA6wTggS/MDVjrtBsQk2Lh5/nb5E9jsoaZpuy/suUjQVyhs1rgAkUr5OrGXuCX36RwTfnPE5A==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@cesium/engine': 2.1.0
-      '@cesium/widgets': 2.1.0
+      '@cesium/engine': 2.4.1
+      '@cesium/widgets': 2.3.1
     dev: false
 
-  /mars3d/3.5.8_6kcrfjjjhqmzvvrqwvmew2oghi:
+  /mars3d/3.5.8_fenjji2ryokordniurvd2avjwq:
     resolution: {integrity: sha512-s9K6xD0A81eabigJWV0UT5IABdYybwYSCU6OD4x5cF0twmQoqX/RLCh3Kk07ZKMKEHZhKLk2FIJTtgPvgsyX/A==}
     peerDependencies:
       '@turf/turf': ^6.5.0
       mars3d-cesium: ~1.105.0
     dependencies:
       '@turf/turf': 6.5.0
-      mars3d-cesium: 1.103.1
+      mars3d-cesium: 1.106.0
     dev: false
 
   /meow/8.1.2:
@@ -4305,8 +4305,8 @@ packages:
     resolution: {integrity: sha512-mUYWsMKNrm4lfygPkL3OfGzOPTR2DBlTkBNHM//F6hGp8cLThY897crAlk3/Jo17LEOOjQUrNAx6DvgO77QJkA==}
     dev: false
 
-  /meshoptimizer/0.18.1:
-    resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==}
+  /meshoptimizer/0.19.0:
+    resolution: {integrity: sha512-58qz5Qc/6Geu8Ib3bBWERE5R7pM5ErrJVo16fAtu6ryxVaE3VAtM/u2vurDxaq8AGZ3yWxuM/DnylTga5a4XCQ==}
     dev: false
 
   /micromatch/4.0.5:

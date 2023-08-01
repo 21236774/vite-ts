@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // 嵌套路由
 import { NButton, NGrid, NGi, NTimeline, NTimelineItem, NCard } from 'naive-ui'
-import { api } from '@/api/oderview'
 import { useEcharts } from 'vite-vue3-xdd-npm'
 import { lineData, barOptions } from './config'
 import { useStoreTheme } from '@/store'
@@ -9,7 +8,6 @@ import Table from './components/Table/index.vue'
 const storeTheme = useStoreTheme()
 const { domRef } = useEcharts(lineData, storeTheme)
 const { domRef: barRef } = useEcharts(barOptions, storeTheme)
-api()
 </script>
 
 <template>

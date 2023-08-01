@@ -25,6 +25,7 @@ export const routes: AuthRoute.Route[] = [
     }
   }
 ]
+
 // 添加初始路由
 export const routeCom = routes.map((item) => {
   const obj = { ...item }
@@ -38,7 +39,7 @@ export const router = createRouter({
   routes: routeCom
 })
 
-export const setupRouter = (app: App) => {
+export const setupRouter = async (app: App) => {
   app.use(router)
   createRouterGuard(router)
 }

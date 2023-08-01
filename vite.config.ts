@@ -37,9 +37,10 @@ export default defineConfig(({ command, mode }) => {
       force: false,
       // 代理
       proxy: {
-        '/api': {
-          target: 'http://jsonplaceholder.typicode.com',
-          changeOrigin: true
+        '/api-proxy': {
+          target: 'http://123.207.197.245:9999/api/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api-proxy/, '')
         }
       }
     },

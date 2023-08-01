@@ -4,17 +4,18 @@ import { getCookie } from '@/utils'
 import { dynamicGuard } from './dynamic'
 
 // 路由拦截
-export const permissionGuard = (
+export const permissionGuard = async (
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
   // 未登录、权限页面、
   const isLogin = Boolean(getCookie('token')) // 是否登录
-  const permissions = dynamicGuard(to, from, next) // 判断是否登录正确
+  const permissions = await dynamicGuard(to, from, next) // 判断是否权限路由以及权限路由处理
   const needLogin = Boolean(to.meta.auth) // 是否需求登录权限的页面
+  console.log(permissions);
+  
   if (permissions) return
-
   const arr: Common.StrategyActions[] = [
     [
       isLogin && to.name === 'login',
@@ -54,7 +55,7 @@ export const permissionGuard = (
     ]
   ]
 
-  arr.some((el) => {
+  arr.some((el, index) => {
     const [flag, action] = el
     flag && action()
     return flag

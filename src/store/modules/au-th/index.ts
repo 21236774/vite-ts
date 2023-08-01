@@ -1,9 +1,16 @@
 import { defineStore } from 'pinia'
 import { getStorage, getCookie, setCookie, setStorage } from '@/utils'
-import { userInfo } from '@/mock/router'
+import { loginApi, getUserInfo } from '@/api/user'
+
+interface AuthState {
+  /** 用户信息 */
+  userInfo: User.UserApiInfo
+  /** 凭证 */
+  token: string
+}
 
 export const useStoreAuth = defineStore('userAuth', {
-  state: () => ({
+  state: (): AuthState => ({
     userInfo: getStorage('userInfo') || {},
     token: getCookie('token') || ''
   }),
@@ -15,29 +22,19 @@ export const useStoreAuth = defineStore('userAuth', {
   },
   actions: {
     /** 根据token进行登录 */
-    loginToken(token: string) {
-      const info = userInfo.find((el) => el.token === token)
-      if (info) {
-        this.userInfo = info
-        this.token = info.token
-        return true
-      }
-      return false
+    loginToken() {
+      getUserInfo().then(({ code, data }) => {
+        if (code === 200) this.userInfo = data
+      })
     },
     /** 根据账号密码进行登录 */
-    userPwdLogin(info: {
-      account: string | number
-      password: string | number
-    }): boolean {
-      const { account, password } = info
-      const infoData = userInfo.find((el) => el.userName === account)
-      if (infoData) {
-        if (password === infoData.password) {
-          this.userInfo = infoData
-          setCookie('token', infoData.token, 1)
-          setStorage('userInfo', infoData)
-          return true
-        }
+    async userPwdLogin(info: User.UserInfo): Promise<boolean> {
+      const { data, code } = await loginApi(info)
+      if (code === 200) {
+        this.userInfo = data
+        setCookie('token', data?.token, 1)
+        setStorage('userInfo', data)
+        return true
       }
       return false
     }
