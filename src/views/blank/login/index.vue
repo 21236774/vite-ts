@@ -48,6 +48,7 @@ const handleValidateClick = (e?: MouseEvent): void => {
   e && e.preventDefault()
   formRef.value?.validate(async (errors) => {
     if (!errors) {
+      // eslint-disable-next-line no-undef
       const { name, password }: User.UserInfo = formValue.value.user
       const isLogin = await store.userPwdLogin({ name, password })
       console.log(isLogin)
@@ -85,19 +86,16 @@ const handleKeyup = (e: KeyboardEvent): void => {
       size="medium"
     >
       <n-form-item label="账号" path="user.name">
-        <n-input
-          v-model:value="formValue.user.name"
-          placeholder="输入账号"
-        />
+        <n-input v-model:value="formValue.user.name" placeholder="输入账号" />
       </n-form-item>
       <n-form-item label="密码" path="user.password">
         <n-input
           v-model:value="formValue.user.password"
           type="password"
           show-password-on="mousedown"
-          @keyup="handleKeyup"
           placeholder="输入密码"
           :maxlength="8"
+          @keyup="handleKeyup"
         />
       </n-form-item>
       <n-form-item>

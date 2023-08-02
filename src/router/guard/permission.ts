@@ -13,8 +13,7 @@ export const permissionGuard = async (
   const isLogin = Boolean(getCookie('token')) // 是否登录
   const permissions = await dynamicGuard(to, from, next) // 判断是否权限路由以及权限路由处理
   const needLogin = Boolean(to.meta.auth) // 是否需求登录权限的页面
-  console.log(permissions);
-  
+  console.log(permissions)
   if (permissions) return
   const arr: Common.StrategyActions[] = [
     [

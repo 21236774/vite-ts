@@ -11,13 +11,14 @@ export const dynamicGuard = async (
   const token = getCookie('token') || '' // 是否登录
   const store = userRoute()
 
-  const redirect =
-    to.path === '/' ? import.meta.env.VITE_ROUTE_HOME_PATH : to.fullPath
   if (!store.routeAuth) {
     // 没有登录回登录页
+    let redirect = to.fullPath
+    if (to.path === '/login' || to.path === '/')
+      redirect = import.meta.env.VITE_ROUTE_HOME_PATH
     if (!token) {
-      if (redirect === '/login') next()
-      else next({ path: '/login', query: { redirect } })
+      if (to.path === '/login') next()
+      else next({ path: '/login', query: { redirect: to.fullPath } })
       return true
     }
     if (to.name === '404') next(false)
@@ -27,6 +28,7 @@ export const dynamicGuard = async (
       return true
     }
     if (store.routeAuth) {
+      next()
       return true
     }
     return false
