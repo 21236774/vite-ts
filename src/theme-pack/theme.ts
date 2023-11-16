@@ -16,8 +16,6 @@ export const getThemeMap = (name: StyleName) => {
 export const setTheme = (isLight: StyleName) => {
   const themeMap = getThemeMap(isLight)
   type FooType = keyof typeof themeMap
-  console.log(themeMap)
-
   Object.keys(themeMap).forEach((key) => {
     document
       .getElementsByTagName('body')[0]

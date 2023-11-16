@@ -24,6 +24,20 @@ export const useStoreTheme = defineStore('useStoreTheme', {
     themeOverrides,
     color: 'rgba(24, 160, 88, 0.4)'
   }),
+  getters: {
+    getDrakTheme(): null | GlobalTheme {
+      return this.darkTheme
+    },
+    getThemeOverrides(): GlobalThemeOverrides {
+      return this.themeOverrides
+    },
+    getTheme(): StyleName {
+      return this.theme
+    },
+    getColor(): string {
+      return this.color
+    }
+  },
   actions: {
     setTheme(payload: StyleName) {
       this.$state.theme = payload
@@ -33,6 +47,7 @@ export const useStoreTheme = defineStore('useStoreTheme', {
     skinning() {
       if (!this.$state.darkTheme) this.$state.darkTheme = darkTheme
       else this.$state.darkTheme = null
+      console.log(this.$state.darkTheme)
     },
     // 切换主题颜色
     setThemeOverrides(color?: string) {
@@ -48,5 +63,9 @@ export const useStoreTheme = defineStore('useStoreTheme', {
         setThemeOverrides(color, textColor)
       )
     }
+  },
+  persist: {
+    enabled: true,
+    strategies: [{ key: 'themes', storage: localStorage }]
   }
 })

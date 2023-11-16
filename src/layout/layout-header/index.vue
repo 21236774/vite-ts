@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { renderIcon } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import {
@@ -32,9 +32,9 @@ const storeUath = useStoreAuth()
 const { goLogout } = useRouterPush()
 const { toggle } = useFullscreen()
 const { t, locale } = useI18n()
-const color = ref<string>(store.$state.color.replace(',0.2', ',0.8'))
+const color = computed<string>(() => store.getColor.replace(',0.2', ',0.8'))
 const log: string = import.meta.env.VITE_LOGO
-let theme: ThemeColor = 'theme'
+let theme: ThemeColor = store.getTheme
 const indexTheme = ref<number>(0)
 const active = ref(false)
 
@@ -70,7 +70,7 @@ const update = () => {
   store.skinning()
 }
 
-const onSelect = (key: string | number, option: DropdownOption) => {
+const onSelect = (key: string | number) => {
   if (key === 'logout') {
     goLogout()
     storeRoute.resetRoutes()
@@ -109,12 +109,6 @@ const setSelect = () => {
   ]
 }
 setSelect()
-watch(
-  () => store.$state.color,
-  (val) => {
-    color.value = val.replace(',0.2', ',0.8')
-  }
-)
 
 watch(
   () => store.$state.theme,

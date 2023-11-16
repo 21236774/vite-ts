@@ -22,8 +22,10 @@ const routeStore = userRoute()
 const menuOptions = ref(routeStore.menu)
 
 const router = useRouter()
-const themeOverrides = ref(store.$state.themeOverrides)
-const theme = ref(store.$state.darkTheme)
+const themeOverrides = computed(() => store.getThemeOverrides)
+const theme = computed(() => store.getDrakTheme)
+console.log(theme.value)
+
 const siderWidth = ref('240px')
 const path = router.currentRoute.value.path
 
@@ -42,21 +44,6 @@ const menuChange = (key: string, item: MenuOption) => {
   const text = item.text as string
   tabStore.updateTabs({ key, text, path: pathUrl })
 }
-
-// 监听store中的变化改变暗黑模式
-watch(
-  () => store.$state.darkTheme,
-  (val) => {
-    theme.value = val
-  }
-)
-// 监听主题颜色，改变对应的主题
-watch(
-  () => store.$state.themeOverrides,
-  (val) => {
-    themeOverrides.value = val
-  }
-)
 
 // 控制menu选中
 watch(
