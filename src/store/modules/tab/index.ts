@@ -40,5 +40,9 @@ export const useTab = defineStore('useTab', {
       const obj = this.tabsList.find((el) => el.key === params.key)
       if (!obj) this.tabsList.push(params)
     }
+  },
+  persist: {
+    enabled: true,
+    strategies: [{ key: 'tabs', storage: localStorage }]
   }
 })

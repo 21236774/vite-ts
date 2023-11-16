@@ -24,6 +24,7 @@
     "mars3d-cesium": "1.106.0",
     "mitt": "^3.0.0",
     "pinia": "^2.0.16",
+    "pinia-plugin-persist": "^1.0.0",
     "serve-static": "^1.15.0",
     "vditor": "^3.9.1",
     "vue": "^3.2.25",

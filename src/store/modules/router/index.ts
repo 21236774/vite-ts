@@ -43,6 +43,8 @@ export const userRoute = defineStore('userRoute', {
           }
           // @ts-ignore
           router.addRoute(routerLayout)
+          console.log(router.getRoutes())
+
           path && router.push(path)
           // @ts-ignore
           this.menu = routeToMenu(routeInfo)
