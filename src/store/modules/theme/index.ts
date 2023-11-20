@@ -5,14 +5,12 @@ import {
   setThemeOverrides,
   themeOverrides
 } from '@/theme-pack'
-import { darkTheme, GlobalThemeOverrides } from 'naive-ui'
+import { GlobalThemeOverrides } from 'naive-ui'
 import { merge } from 'lodash-es'
 import type { StyleName } from '@/theme-pack'
-import type { GlobalTheme } from 'naive-ui'
 
 interface State {
   theme: StyleName
-  darkTheme: null | GlobalTheme
   themeOverrides: GlobalThemeOverrides
   color: string
 }
@@ -20,14 +18,10 @@ interface State {
 export const useStoreTheme = defineStore('useStoreTheme', {
   state: (): State => ({
     theme: 'theme',
-    darkTheme: null,
     themeOverrides,
     color: 'rgba(24, 160, 88, 0.4)'
   }),
   getters: {
-    getDrakTheme(): null | GlobalTheme {
-      return this.darkTheme
-    },
     getThemeOverrides(): GlobalThemeOverrides {
       return this.themeOverrides
     },
@@ -42,12 +36,6 @@ export const useStoreTheme = defineStore('useStoreTheme', {
     setTheme(payload: StyleName) {
       this.$state.theme = payload
       setTheme(payload)
-    },
-    // naive换肤 暗黑模式
-    skinning() {
-      if (!this.$state.darkTheme) this.$state.darkTheme = darkTheme
-      else this.$state.darkTheme = null
-      console.log(this.$state.darkTheme)
     },
     // 切换主题颜色
     setThemeOverrides(color?: string) {

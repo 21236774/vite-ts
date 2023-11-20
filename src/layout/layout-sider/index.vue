@@ -8,10 +8,11 @@ import {
   NLayoutSider,
   NMenu,
   NConfigProvider,
-  useMessage
+  useMessage,
+  darkTheme
 } from 'naive-ui'
 import { routerFlat } from '@/utils'
-import type { MenuOption } from 'naive-ui'
+import type { MenuOption, GlobalTheme } from 'naive-ui'
 
 const store = useStoreTheme()
 const tabStore = useTab()
@@ -23,7 +24,9 @@ const menuOptions = ref(routeStore.menu)
 
 const router = useRouter()
 const themeOverrides = computed(() => store.getThemeOverrides)
-const theme = computed(() => store.getDrakTheme)
+const theme = computed<null | GlobalTheme>(() => {
+  return store.getTheme === 'theme' ? null : darkTheme
+})
 console.log(theme.value)
 
 const siderWidth = ref('240px')

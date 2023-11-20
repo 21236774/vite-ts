@@ -27,7 +27,6 @@ const railStyle = () => {
 const switchUpdate = (value: boolean) => {
   if (value) store.setTheme('dark')
   else store.setTheme('theme')
-  store.skinning()
 }
 </script>
 

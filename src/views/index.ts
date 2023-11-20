@@ -1,4 +1,5 @@
-const views: { [key: string | number]: any } = {
+import type { Component } from 'vue'
+const views: { [key: string | number]: Component } = {
   404: () => import('./blank/404/index.vue'),
   login: () => import('./blank/login/index.vue'),
   front: () => import('./basic/front/index.vue'),

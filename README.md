@@ -2,7 +2,8 @@
 
 ### [在线预览](http://123.207.197.245:8080/xdd-admin/)
 > 用户名 admin 密码 admin
-> 用户名 user    密码 user
+
+> 用户名 user  密码 user
 
 ### 快速开始
 

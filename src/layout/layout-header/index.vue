@@ -67,7 +67,6 @@ const update = () => {
   else indexTheme.value = 0
   theme = popselectOptions.value[indexTheme.value].value as ThemeColor
   store.setTheme(theme)
-  store.skinning()
 }
 
 const onSelect = (key: string | number) => {
