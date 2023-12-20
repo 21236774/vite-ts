@@ -22,13 +22,6 @@ const trigger = () => {
   arr.forEach((el) => el())
 }
 
-const reactive = (target) => {
-  const handler = {
-    get(target, key, receiver) {},
-    set(target, key, value) {}
-  }
-}
-
 track()
 money = 300
 trigger()
@@ -52,7 +45,10 @@ console.log('msgTitle: ', msgTitle)
       </div>
     </n-gi>
     <n-gi :span="2">
-      <div class="h-400 bg-bg-color rounded-2xl p-21 box-border"></div>
+      <div class="h-400 bg-bg-color rounded-2xl p-21 box-border">
+        <div style="color: red">测试CI/CD流水线是否有效</div>
+        <xdd-button type="success">测试引入自己写的组件库</xdd-button>
+      </div>
     </n-gi>
   </n-grid>
 </template>

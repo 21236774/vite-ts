@@ -78,7 +78,7 @@ const siderStyle = computed(() => {
       <slot name="header" />
       <n-layout
         has-sider
-        style="height: calc(100% - 50px)"
+        style="height: calc(100% - 50px); position: static"
         class="bg-global-color"
       >
         <n-layout-sider
@@ -99,7 +99,7 @@ const siderStyle = computed(() => {
             @update:value="menuChange"
           />
         </n-layout-sider>
-        <n-layout class="color-text-color">
+        <n-layout class="color-text-color" style="position: static">
           <div
             class="bg-bg-color fixed z-10 shadow w-full left-0 layout-and"
             :style="siderStyle"
