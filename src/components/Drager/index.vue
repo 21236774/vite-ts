@@ -15,11 +15,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { datProps } from '@/components/Drager/props'
 import { dragerList } from '@/components/Drager/drage'
 import type { DragerKeyType } from '@/components/Drager/drage'
-import { getGridPosition, isBoundary } from '@/components/Drager/utils'
+import {
+  getGridPosition,
+  isBoundary,
+  parentGridPosition
+} from '@/components/Drager/utils'
 import { uesDrager } from '@/components/Drager/hooks/use-drager'
 const props = defineProps(datProps)
 const emit = defineEmits(['move', 'resize'])
@@ -90,16 +94,25 @@ const onDotMousedown = (item: DragerKeyType, e: MouseEvent) => {
       const h = hRemain > halfY ? props.gridY - hRemain : -hRemain
       const l = remainX > halfX ? props.gridX - remainX : -remainX
       const t = remainY > halfY ? props.gridY - remainY : -remainY
-
       width += w
       height += h
-      left += l
-      top += t
-      console.log(width, '-------')
-      console.log(height, '-------')
-      console.log(left, remainX, 'left')
+      if (!parentRect) {
+        left += l
+        top += t
+      }
+      const { moveY, moveX } = parentGridPosition(
+        props,
+        { moveX: left, moveY: top },
+        parentRect,
+        {
+          halfY: remainY,
+          halfX: remainX
+        }
+      )
+
+      left = moveX
+      top = moveY
     }
-    console.log(width, left, '**********')
 
     if (parentRect) {
       if (
@@ -142,7 +155,7 @@ const onDotMousedown = (item: DragerKeyType, e: MouseEvent) => {
       transform: translate(-50%, 50%);
     }
     &[data-side='bottom-right'] {
-      transform: translate(50%, 50%);
+      transform: translate(50%, 50%);y
     }
   }
 }

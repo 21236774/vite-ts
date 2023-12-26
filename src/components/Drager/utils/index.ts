@@ -7,6 +7,10 @@ interface Move {
   moveY: number
   moveX: number
 }
+interface Half {
+  halfX: number
+  halfY: number
+}
 // 单位处理
 export const withUnit = (val: number | string = 0) => {
   return parseInt(val + '') + 'px'
@@ -20,6 +24,30 @@ export const isBoundary = (el: HTMLElement, boundary: Boolean) => {
     return parentElement.getBoundingClientRect()
   }
   return false
+}
+export const parentGridPosition = (
+  props: Props,
+  move: Move,
+  parentRect: DOMRect | false,
+  half: Half
+  // eslint-disable-next-line max-params
+) => {
+  let moveX = move.moveX
+  let moveY = move.moveY
+
+  if (parentRect) {
+    // 离父元素移动多少
+    const parentLeft = moveX - parentRect.left < 0 ? 0 : moveX - parentRect.left
+    const parentTop = moveY - parentRect.top < 0 ? 0 : moveY - parentRect.top
+    const remainderX = parentLeft % props.gridX > half.halfX ? props.gridX : 0
+    const remainderY = parentTop % props.gridY > half.halfY ? props.gridY : 0
+    const intX = Math.floor(parentLeft / props.gridX) * props.gridX
+    const intY = Math.floor(parentTop / props.gridY) * props.gridY
+    moveX = parentRect.left + intX + remainderX
+    moveY = parentRect.top + intY + remainderY
+  }
+  console.log(moveX, moveY, 'moveX,moveY')
+  return { moveX, moveY }
 }
 
 export const getGridPosition = (
@@ -37,17 +65,12 @@ export const getGridPosition = (
     const halfY = props.gridX / 2
     moveX = remainX > halfX ? moveX - remainX + props.gridX : moveX - remainX
     moveY = remainY > halfY ? moveY - remainY + props.gridY : moveY - remainY
-    if (parentRect) {
-      // 离父元素移动多少
-      const parentLeft = moveX - parentRect.left
-      const parentTop = moveY - parentRect.top
-      const remainderX = parentLeft % props.gridX > halfX ? props.gridX : 0
-      const remainderY = parentTop % props.gridY > halfY ? props.gridY : 0
-      const intX = Math.floor(parentLeft / props.gridX) * props.gridX
-      const intY = Math.floor(parentTop / props.gridY) * props.gridY
-      moveX = parentRect.left + intX + remainderX
-      moveY = parentRect.top + intY + remainderY
-    }
+    const moves = parentGridPosition(props, { moveX, moveY }, parentRect, {
+      halfX,
+      halfY
+    })
+    moveX = moves.moveX
+    moveY = moves.moveY
   }
   return { moveX, moveY }
 }
