@@ -77,6 +77,9 @@ export default defineConfig(({ command, mode }) => {
         }
       }),
       viteCompression() // 开启gzip压缩
-    ]
+    ],
+    optimizeDeps: {
+      exclude: ['src/assets/model/3k.glb']
+    }
   }
 })

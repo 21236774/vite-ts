@@ -27,6 +27,11 @@ pnpm i
 npm run dev
 ```
 
+##### 代码提交校验
+```bash
+npm run prepare
+```
+
 ##### 运行script
 
 ``` javascript

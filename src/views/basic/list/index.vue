@@ -33,14 +33,13 @@ onMounted(() => {
     100
   )
   camera.position.set(0, 4, 6)
-
   const dracoLoader = new DRACOLoader()
-  dracoLoader.setDecoderPath('src/assets/gltf/')
+  dracoLoader.setDecoderPath(`gltf/`)
 
   const loader = new GLTFLoader()
   loader.setDRACOLoader(dracoLoader)
   loader.load(
-    'src/assets/model/3k.glb',
+    `model/3k.glb`,
     function (gltf) {
       const model = gltf.scene
       console.log(model)
