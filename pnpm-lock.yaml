@@ -35,6 +35,9 @@ dependencies:
   serve-static:
     specifier: ^1.15.0
     version: 1.15.0
+  three:
+    specifier: 0.155.0
+    version: 0.155.0
   vditor:
     specifier: ^3.9.1
     version: 3.9.3
@@ -64,6 +67,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.0.3
     version: 18.16.14
+  '@types/three':
+    specifier: ^0.161.2
+    version: 0.161.2
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.30.6
     version: 5.59.7(@typescript-eslint/parser@5.59.7)(eslint@8.41.0)(typescript@4.9.5)
@@ -1788,8 +1794,25 @@ packages:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
     dev: true
 
+  /@types/stats.js@0.17.3:
+    resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
+    dev: true
+
+  /@types/three@0.161.2:
+    resolution: {integrity: sha512-DazpZ+cIfBzbW/p0zm6G8CS03HBMd748A3R1ZOXHpqaXZLv2I5zNgQUrRG//UfJ6zYFp2cUoCQaOLaz8ubH07w==}
+    dependencies:
+      '@types/stats.js': 0.17.3
+      '@types/webxr': 0.5.14
+      fflate: 0.6.10
+      meshoptimizer: 0.18.1
+    dev: true
+
   /@types/web-bluetooth@0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
+
+  /@types/webxr@0.5.14:
+    resolution: {integrity: sha512-UEMMm/Xn3DtEa+gpzUrOcDj+SJS1tk5YodjwOxcqStNhCfPcwgyC5Srg2ToVKyg2Fhq16Ffpb0UWUQHqoT9AMA==}
+    dev: true
 
   /@typescript-eslint/eslint-plugin@5.59.7(@typescript-eslint/parser@5.59.7)(eslint@8.41.0)(typescript@4.9.5):
     resolution: {integrity: sha512-BL+jYxUFIbuYwy+4fF86k5vdT9lT0CNJ6HtwrIvGh0PhH8s0yy5rjaKH2fDCrz5ITHy07WCzVGNvAmjJh4IJFA==}
@@ -3404,6 +3427,10 @@ packages:
       reusify: 1.0.4
     dev: true
 
+  /fflate@0.6.10:
+    resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+    dev: true
+
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -4362,6 +4389,10 @@ packages:
   /mersenne-twister@1.1.0:
     resolution: {integrity: sha512-mUYWsMKNrm4lfygPkL3OfGzOPTR2DBlTkBNHM//F6hGp8cLThY897crAlk3/Jo17LEOOjQUrNAx6DvgO77QJkA==}
     dev: false
+
+  /meshoptimizer@0.18.1:
+    resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==}
+    dev: true
 
   /meshoptimizer@0.19.0:
     resolution: {integrity: sha512-58qz5Qc/6Geu8Ib3bBWERE5R7pM5ErrJVo16fAtu6ryxVaE3VAtM/u2vurDxaq8AGZ3yWxuM/DnylTga5a4XCQ==}
@@ -5532,6 +5563,10 @@ packages:
     dependencies:
       any-promise: 1.3.0
     dev: true
+
+  /three@0.155.0:
+    resolution: {integrity: sha512-sNgCYmDijnIqkD/bMfk+1pHg3YzsxW7V2ChpuP6HCQ8NiZr3RufsXQr8M3SSUMjW4hG+sUk7YbyuY0DncaDTJQ==}
+    dev: false
 
   /through2@4.0.2:
     resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}

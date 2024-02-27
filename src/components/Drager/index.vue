@@ -155,7 +155,7 @@ const onDotMousedown = (item: DragerKeyType, e: MouseEvent) => {
       transform: translate(-50%, 50%);
     }
     &[data-side='bottom-right'] {
-      transform: translate(50%, 50%);y
+      transform: translate(50%, 50%);
     }
   }
 }
