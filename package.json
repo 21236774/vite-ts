@@ -19,9 +19,11 @@
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@turf/turf": "6.5.0",
     "@vueuse/core": "^9.10.0",
-    "axios": "^0.27.2",
+    "axios": "^0.28.1",
+    "highlight.js": "^11.9.0",
+    "markdown-it-highlightjs": "^4.0.1",
     "mars3d": "^3.1.16",
-    "mars3d-cesium": "1.106.0",
+    "mars3d-cesium": "1.116.0",
     "mitt": "^3.0.0",
     "moment": "^2.30.1",
     "pinia": "^2.0.16",
@@ -38,6 +40,7 @@
     "@commitlint/config-conventional": "^17.6.1",
     "@types/lodash": "^4.14.185",
     "@types/lodash-es": "^4.17.7",
+    "@types/markdown-it": "^14.0.0",
     "@types/node": "^18.0.3",
     "@types/three": "^0.161.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
@@ -56,6 +59,7 @@
     "less": "^4.1.3",
     "lint-staged": "^13.2.1",
     "lodash-es": "^4.17.21",
+    "markdown-it": "^14.1.0",
     "naive-ui": "^2.31.0",
     "postcss": "^8.4.14",
     "prettier": "^2.8.7",
@@ -72,6 +76,6 @@
     "vite-vue3-xdd-npm": "0.0.5",
     "vue-eslint-parser": "^9.1.1",
     "vue-tsc": "^0.34.7",
-    "xdd-ui": "0.0.18"
+    "xdd-ui": "^0.0.24"
   }
 }
