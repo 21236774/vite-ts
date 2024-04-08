@@ -89,7 +89,7 @@ const originClick = () => {
       <div class="h-101 bg-bg-color rounded-2xl p-21 box-border">
         <div style="color: red">测试CI/CD流水线是否有效</div>
         <xdd-button type="success">测试自己组件库</xdd-button>
-<!--        <xdd-button type="success" @click="originClick">回到原点</xdd-button>-->
+        <!--        <xdd-button type="success" @click="originClick">回到原点</xdd-button>-->
       </div>
     </n-gi>
   </n-grid>
