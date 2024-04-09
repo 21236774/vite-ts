@@ -3,7 +3,7 @@ import { NCard, NButton, NInput, useDialog, useMessage } from 'naive-ui'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { updateArticle } from '@/api/article'
 const vditor = ref<Vditor | null>(null)
 const title = ref('')
@@ -41,7 +41,7 @@ onMounted(() => {
   })
 })
 
-router.beforeEach((to, from, next) => {
+onBeforeRouteLeave((to, from, next) => {
   if (vditor?.value) {
     const value = vditor.value.getValue()
     if (value.trim() !== '' || title.value !== '') {
