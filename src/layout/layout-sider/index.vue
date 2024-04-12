@@ -107,7 +107,9 @@ const siderStyle = computed(() => {
             <slot name="tabs"></slot>
           </div>
           <div class="m-21 mt-50">
-            <slot />
+            <x-config-provider :theme="!theme ? 'theme' : 'dark'">
+              <slot />
+            </x-config-provider>
           </div>
         </n-layout>
       </n-layout>

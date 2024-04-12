@@ -3,14 +3,27 @@ import { NCard, NButton, NInput, useDialog, useMessage } from 'naive-ui'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 import { ref, onMounted } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router'
 import { updateArticle } from '@/api/article'
-const vditor = ref<Vditor | null>(null)
-const title = ref('')
+const propsData = defineProps({
+  cardText: {
+    type: String,
+    default: '新增'
+  },
+  options: {
+    type: Object,
+    default: () => {
+      return {
+        title: '',
+        content: ''
+      }
+    }
+  }
+})
 
+const vditor = ref<Vditor | null>(null)
 const dialog = useDialog()
 const message = useMessage()
-
+const title = ref(propsData.options.title)
 const onSubmit = () => {
   if (!title.value || !vditor?.value) {
     message.error('请完善内容后再发布吧！')
@@ -35,35 +48,13 @@ const onSubmit = () => {
 onMounted(() => {
   vditor.value = new Vditor('vditor', {
     after: () => {
-      vditor.value!.setValue('')
+      vditor.value!.setValue(propsData.options.content)
     }
   })
 })
-
-onBeforeRouteLeave((to, from, next) => {
-  if (vditor?.value) {
-    const value = vditor.value.getValue()
-    if (value.trim() !== '' || title.value !== '') {
-      dialog.warning({
-        title: '警告',
-        content: '您有内容未保存，您确定离开吗？',
-        positiveText: '确定',
-        negativeText: '不确定',
-        onPositiveClick: () => {
-          vditor.value!.setValue('')
-          next()
-        }
-      })
-    } else {
-      next()
-    }
-    return
-  }
-  next()
-})
 </script>
 <template>
-  <n-card title="新增文章">
+  <n-card :title="`${cardText}文章`">
     <n-input
       v-model:value="title"
       type="text"
