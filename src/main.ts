@@ -6,6 +6,7 @@ import { setupGisMap } from '@/plugins/gis'
 import { setupLanguage } from '@/language'
 import xddUI from 'xdd-ui'
 import 'vfonts/Lato.css'
+import '@/assets/styles/md.scss'
 import 'highlight.js/styles/default.min.css'
 import './index.css'
 

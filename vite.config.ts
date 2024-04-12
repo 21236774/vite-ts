@@ -54,6 +54,9 @@ export default defineConfig(({ command, mode }) => {
             __dirname,
             'src/assets/styles/main.less'
           )}";`
+        },
+        scss: {
+          javascriptEnabled: true
         }
       }
     },

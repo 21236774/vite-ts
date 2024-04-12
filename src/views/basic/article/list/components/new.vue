@@ -14,11 +14,14 @@ const propsData = defineProps({
     default: () => {
       return {
         title: '',
-        content: ''
+        content: '',
+        remark: '',
+        id: ''
       }
     }
   }
 })
+const emit = defineEmits(['handle'])
 
 const vditor = ref<Vditor | null>(null)
 const dialog = useDialog()
@@ -37,7 +40,10 @@ const onSubmit = () => {
       negativeText: '不确定',
       onPositiveClick: () => {
         const value = vditor!.value.getValue()
-        updateArticle({ title: title.value, text: value }).then((res: any) => {
+        const params = { title: title.value, text: value }
+        if (propsData.options.id !== '') params.id = propsData.options.id
+        updateArticle(params).then((res: any) => {
+          emit('handle')
           message.success(res.msg)
         })
       }
