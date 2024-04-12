@@ -117,18 +117,18 @@ const handleClick = (row: RowData, val: TableEdit) => {
     editContent.id = row.id || 0
     editText.value = val
     editShow.value = true
-  } else {
-    // 删除
-    dialog.warning({
-      title: '警告',
-      content: '你确定删除？',
-      positiveText: '确定',
-      negativeText: '不确定',
-      onPositiveClick: () => {
-        console.log(222)
-      }
-    })
+    return
   }
+  // 删除
+  dialog.warning({
+    title: '警告',
+    content: '你确定删除？',
+    positiveText: '确定',
+    negativeText: '不确定',
+    onPositiveClick: () => {
+      console.log(222)
+    }
+  })
 }
 
 const newArticleData = () => {
