@@ -7,7 +7,6 @@ import moment from 'moment'
 import { usePagination } from '@/hooks'
 import { getUserArticle, delArticle } from '@/api/article'
 import { useStoreTheme, useStoreAuth } from '@/store'
-import { Data } from '@/typings/global'
 
 type RowData = {
   remark: string
@@ -57,6 +56,7 @@ const columns: any[] = [
   {
     title: '操作',
     key: 'action',
+    width: 200,
     render(row: RowData) {
       let editArr = JSON.parse(JSON.stringify(tableEdit))
       if (authStore.userInfo.auth !== '1') {
@@ -124,14 +124,14 @@ const editContent = reactive({
   title: '',
   content: '',
   remark: '',
-  id: 0
+  id: ''
 })
 const handleClick = (row: RowData, val: TableEdit) => {
   if (val === '编辑') {
     editContent.title = row.title
     editContent.content = row.text
     editContent.remark = row.remark
-    editContent.id = row.id || 0
+    editContent.id = row.id + '' || ''
     editText.value = val
     editShow.value = true
     return
@@ -157,6 +157,10 @@ const handleClick = (row: RowData, val: TableEdit) => {
 
 const newArticleData = () => {
   editText.value = '新增'
+  editContent.title = ''
+  editContent.content = ''
+  editContent.remark = ''
+  editContent.id = ''
   editShow.value = true
 }
 const handleChange = () => {
@@ -179,19 +183,21 @@ const handleChange = () => {
     />
   </n-card>
   <x-modal v-model:show="show">
+    <h1 class="mb-13">{{ rowItem?.title }}</h1>
+    <div class="mb-21">
+      <span
+        :class="`row-item-user ${
+          store.theme === 'dark' ? 'row-item-user-dark' : ''
+        }`"
+        >{{ rowItem?.user }}</span
+      >
+      <span class="ml-4 row-item-date">{{ rowItem?.date }}</span>
+    </div>
     <div
-      :class="`markdown-body w-650 ${store.theme === 'dark' ? '__dark' : ''}`"
+      :class="`markdown-body max-h-650 relative w-650 ${
+        store.theme === 'dark' ? '__dark' : ''
+      }`"
     >
-      <h1 class="mb-13">{{ rowItem?.title }}</h1>
-      <div class="mb-21">
-        <span
-          :class="`row-item-user ${
-            store.theme === 'dark' ? 'row-item-user-dark' : ''
-          }`"
-          >{{ rowItem?.user }}</span
-        >
-        <span class="ml-4 row-item-date">{{ rowItem?.date }}</span>
-      </div>
       <div v-html="markdownText"></div>
     </div>
   </x-modal>

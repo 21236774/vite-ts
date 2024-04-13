@@ -53,6 +53,7 @@ const onSubmit = () => {
 
 onMounted(() => {
   vditor.value = new Vditor('vditor', {
+    height: 600,
     after: () => {
       vditor.value!.setValue(propsData.options.content)
     }
@@ -67,7 +68,7 @@ onMounted(() => {
       size="large"
       placeholder="标题"
     />
-    <div id="vditor" style="min-height: 600px" class="mt-5" />
+    <div id="vditor" class="mt-5" />
     <div class="mt-5 text-right">
       <n-button class="mr-5"> 保存到草稿箱 </n-button>
       <n-button type="info" @click="onSubmit"> 提交 </n-button>
