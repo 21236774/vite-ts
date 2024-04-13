@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, h, withModifiers, reactive } from 'vue'
-import { NCard, NDataTable, NButton, useDialog } from 'naive-ui'
+import { NCard, NDataTable, NButton, useDialog, useMessage } from 'naive-ui'
 import markdownParser from '@/utils/markdown'
 import UpdateArticle from './components/new.vue'
 import moment from 'moment'
 import { usePagination } from '@/hooks'
-import { getUserArticle } from '@/api/article'
-import { useStoreTheme } from '@/store'
+import { getUserArticle, delArticle } from '@/api/article'
+import { useStoreTheme, useStoreAuth } from '@/store'
+import { Data } from '@/typings/global'
 
 type RowData = {
   remark: string
@@ -15,10 +16,18 @@ type RowData = {
   date: string
   id?: number
 }
-const tableEdit = ['编辑', '删除']
-type TableEdit = '编辑' | '删除'
+const tableEdit = ['查看', '编辑', '删除']
+type TableEdit = '查看' | '编辑' | '删除'
+const tableEditBtn = {
+  查看: 'info',
+  编辑: 'warning',
+  删除: 'error'
+}
 const dialog = useDialog()
+const message = useMessage()
 const store = useStoreTheme()
+const authStore = useStoreAuth()
+console.log(authStore.userInfo)
 const columns: any[] = [
   {
     title: '标题',
@@ -26,7 +35,7 @@ const columns: any[] = [
   },
   {
     title: '内容',
-    key: 'text',
+    key: 'abstract',
     width: 500,
     ellipsis: {
       tooltip: false,
@@ -49,12 +58,18 @@ const columns: any[] = [
     title: '操作',
     key: 'action',
     render(row: RowData) {
-      const btns = tableEdit.map((el) => {
+      let editArr = JSON.parse(JSON.stringify(tableEdit))
+      if (authStore.userInfo.auth !== '1') {
+        if (authStore.userInfo.auth * 1 > row?.authId * 1) {
+          editArr = ['查看']
+        }
+      }
+      const btns = editArr.map((el: TableEdit) => {
         return h(
           NButton,
           {
             size: 'small',
-            type: el === '删除' ? 'error' : 'info',
+            type: tableEditBtn[el],
             style: { marginRight: '10px' },
             onClick: withModifiers(() => {
               handleClick(row, el as TableEdit)
@@ -90,12 +105,15 @@ getData()
 const show = ref(false)
 const rowItem = ref({})
 const markdownText = ref('')
+const showContent = (row: RowData) => {
+  markdownText.value = markdownParser.render(row.text)
+  rowItem.value = row
+  show.value = true
+}
 const rowProps = (row: RowData) => {
   return {
     onClick: () => {
-      markdownText.value = markdownParser.render(row.text)
-      rowItem.value = row
-      show.value = true
+      showContent(row)
     }
   }
 }
@@ -109,7 +127,6 @@ const editContent = reactive({
   id: 0
 })
 const handleClick = (row: RowData, val: TableEdit) => {
-  console.log(row, val)
   if (val === '编辑') {
     editContent.title = row.title
     editContent.content = row.text
@@ -119,6 +136,10 @@ const handleClick = (row: RowData, val: TableEdit) => {
     editShow.value = true
     return
   }
+  if (val === '查看') {
+    showContent(row)
+    return
+  }
   // 删除
   dialog.warning({
     title: '警告',
@@ -126,7 +147,10 @@ const handleClick = (row: RowData, val: TableEdit) => {
     positiveText: '确定',
     negativeText: '不确定',
     onPositiveClick: () => {
-      console.log(222)
+      delArticle(row?.id as unknown as string).then((res: ApiData.Data) => {
+        getData()
+        message.success(res.msg)
+      })
     }
   })
 }

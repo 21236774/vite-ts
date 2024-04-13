@@ -10,9 +10,12 @@ declare namespace Common {
   type StrategyActions = [boolean, () => void]
 }
 
-interface ApiData<T = any> {
-  code: number
-  // data: AuthRoute.Route[];
-  data: T
-  msg: string
+declare namespace ApiData {
+  interface Data<T = any> {
+    code: number
+    data: T
+    msg: string
+  }
 }
+
+export {}

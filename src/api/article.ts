@@ -11,3 +11,7 @@ export const getUserArticle = (params: any): any => {
 export const updateArticle = (params: any): any => {
   return request.post('/api-proxy/article/new', { ...params })
 }
+
+export const delArticle = (id: string): any => {
+  return request.get('/api-proxy/article/del?id=' + id)
+}

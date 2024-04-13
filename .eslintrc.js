@@ -142,6 +142,7 @@ module.exports = {
     defineEmits: 'readonly',
     defineExpose: 'readonly',
     withDefaults: 'readonly',
-    AuthRoute: true
+    AuthRoute: true,
+    ApiData: true
   }
 }
