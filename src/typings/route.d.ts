@@ -15,7 +15,12 @@ declare namespace AuthRoute {
    */
   type RouteComponentType = 'basic' | 'blank' | 'multi' | 'self'
 
-  type MenuIcon = 'LaptopIcon' | 'SettingsIcon' | 'ListIcon' | 'LogoOctocatIcon'
+  type MenuIcon =
+    | 'LaptopIcon'
+    | 'SettingsIcon'
+    | 'ListIcon'
+    | 'LogoOctocatIcon'
+    | 'DefaultIcon'
 
   interface RouteMeta {
     /** 路由标题 */

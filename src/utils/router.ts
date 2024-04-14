@@ -7,17 +7,29 @@ import {
   LaptopOutline as LaptopIcon,
   SettingsOutline as SettingsIcon,
   MenuSharp as ListIcon,
-  LogoOctocat as LogoOctocatIcon
+  LogoOctocat as LogoOctocatIcon,
+  DocumentTextOutline as ArticleIcon,
+  PeopleOutline as AccountIcon,
+  PricetagOutline as ArticleTypeIcon,
+  SparklesOutline as DefaultIcon,
+  ListCircleOutline as ArticleListIcon,
+  ExtensionPuzzleOutline as PluginsIcon
 } from '@vicons/ionicons5'
 
 const menuIcon = {
   LaptopIcon,
   SettingsIcon,
   ListIcon,
-  LogoOctocatIcon
+  LogoOctocatIcon,
+  ArticleIcon,
+  AccountIcon,
+  ArticleTypeIcon,
+  DefaultIcon,
+  ArticleListIcon,
+  PluginsIcon
 }
 
-const getIcon = (icon: AuthRoute.MenuIcon = 'LogoOctocatIcon') => {
+const getIcon = (icon: AuthRoute.MenuIcon = 'DefaultIcon') => {
   return menuIcon[icon]
 }
 
@@ -77,6 +89,7 @@ export const getRouterCom = (
   const routerArr: AuthRoute.Route[] = []
   routeInfo.forEach((el) => {
     const obj = { ...el }
+    // @ts-ignore
     obj.component = views[el.name]
     let routerChildren: AuthRoute.Route[] = []
     if (obj?.children?.length) {
