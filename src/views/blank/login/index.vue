@@ -94,7 +94,7 @@ const handleKeyup = (e: KeyboardEvent): void => {
           type="password"
           show-password-on="mousedown"
           placeholder="输入密码"
-          :maxlength="8"
+          :maxlength="16"
           @keyup="handleKeyup"
         />
       </n-form-item>
