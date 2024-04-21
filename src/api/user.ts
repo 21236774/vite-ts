@@ -5,7 +5,7 @@ export const getRoutes = (): Promise<ApiData<AuthRoute.Route[]>> => {
 }
 // 获取用户信息
 export const getUserInfo = (): Promise<ApiData<User.UserApiInfo>> => {
-  return request.get('/api-proxy/users/userInfo')
+  return request.get('/api-proxy/users/user-info')
 }
 
 // 登录

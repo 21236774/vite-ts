@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, h, withModifiers, reactive } from 'vue'
-import { NCard, NDataTable, NButton, useDialog, useMessage } from 'naive-ui'
+import {
+  NCard,
+  NDataTable,
+  NButton,
+  useDialog,
+  useMessage,
+  NTag
+} from 'naive-ui'
 import markdownParser from '@/utils/markdown'
 import UpdateArticle from './components/new.vue'
 import moment from 'moment'
@@ -14,6 +21,7 @@ type RowData = {
   text: string
   date: string
   id?: number
+  categories: string
 }
 const tableEdit = ['查看', '编辑', '删除']
 type TableEdit = '查看' | '编辑' | '删除'
@@ -35,10 +43,34 @@ const columns: any[] = [
   {
     title: '内容',
     key: 'abstract',
-    width: 500,
+    width: 400,
     ellipsis: {
       tooltip: false,
       lineClamp: 2
+    }
+  },
+  {
+    title: '分类',
+    key: 'categories',
+    width: 130,
+    render(row: RowData) {
+      const tag = row.categories ? row.categories.split(',') : []
+      const tags = tag.map((tagKey: any) => {
+        return h(
+          NTag,
+          {
+            style: {
+              marginRight: '6px'
+            },
+            type: 'info',
+            bordered: false
+          },
+          {
+            default: () => tagKey
+          }
+        )
+      })
+      return tags
     }
   },
   {
@@ -124,7 +156,8 @@ const editContent = reactive({
   title: '',
   content: '',
   remark: '',
-  id: ''
+  id: '',
+  tags: ''
 })
 const handleClick = (row: RowData, val: TableEdit) => {
   if (val === '编辑') {
@@ -132,6 +165,7 @@ const handleClick = (row: RowData, val: TableEdit) => {
     editContent.content = row.text
     editContent.remark = row.remark
     editContent.id = row.id + '' || ''
+    editContent.tags = row.categories || ''
     editText.value = val
     editShow.value = true
     return
@@ -161,6 +195,7 @@ const newArticleData = () => {
   editContent.content = ''
   editContent.remark = ''
   editContent.id = ''
+  editContent.tags = ''
   editShow.value = true
 }
 const handleChange = () => {
