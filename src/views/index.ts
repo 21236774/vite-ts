@@ -11,6 +11,7 @@ const views: { [key: string | number]: Component } = {
   plugin_gismap: () => import('./basic/plugin/gisMap/index.vue'),
   article_list: () => import('./basic/article/list/index.vue'),
   article_new: () => import('./basic/article/new/index.vue'),
-  article_type: () => import('./basic/article/type/index.vue')
+  article_type: () => import('./basic/article/type/index.vue'),
+  threejs_texture: () => import('./basic/threejs/texture/index.vue')
 }
 export { views }
