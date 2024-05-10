@@ -18,6 +18,8 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@turf/turf": "6.5.0",
+    "@vue/runtime-core": "^3.4.27",
+    "@vue/tsconfig": "^0.5.1",
     "@vueuse/core": "^9.10.0",
     "axios": "^0.28.1",
     "highlight.js": "^11.9.0",
@@ -77,6 +79,6 @@
     "vite-vue3-xdd-npm": "0.0.5",
     "vue-eslint-parser": "^9.1.1",
     "vue-tsc": "^0.34.7",
-    "xdd-ui": "^0.0.25"
+    "xdd-ui": "^0.0.26"
   }
 }

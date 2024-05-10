@@ -205,7 +205,7 @@ const handleChange = () => {
 </script>
 <template>
   <n-card title="文章列表">
-    <x-button type="info" class="new-article-btn" @click="newArticleData"
+    <x-button class="new-article-btn" @click="newArticleData"
       >新建文章</x-button
     >
     <n-data-table

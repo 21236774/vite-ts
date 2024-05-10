@@ -18,8 +18,9 @@
         "src/*"
       ]
     },
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "node_modules/xdd-ui/lib/**/*.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "extends": "@vue/tsconfig/tsconfig.json"
 }
