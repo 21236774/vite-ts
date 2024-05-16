@@ -57,6 +57,7 @@ npm run prepare
 ```
 public                               公共资源
 |-- config.json                      GIS地图配置文件
+|-- model                            3D模型文件
 src                                  源码目录
 |-- api                              所有后端交互接口
 |   |-                                ...
@@ -101,4 +102,13 @@ tailwind.config.js                   tailwindcss配置文件
 tsconfig.json                        Ts配置文件
 tsconfig.node.json                   Ts配置json文件
 vite.config.ts                       vite配置文件
+```
+
+##### GLB文件压缩
+```bash
+pnpm i -g gltf-pipeline
+```
+> 压缩命令
+```bash
+gltf-pipeline -i SU7.glb -o su7.glb -d
 ```

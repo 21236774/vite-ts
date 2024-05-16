@@ -43,7 +43,7 @@
     "@types/lodash": "^4.14.185",
     "@types/lodash-es": "^4.17.7",
     "@types/markdown-it": "^14.0.0",
-    "@types/node": "^18.0.3",
+    "@types/node": "^18.19.30",
     "@types/three": "^0.161.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",

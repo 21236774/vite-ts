@@ -1,19 +1,22 @@
 <script setup>
 import Mallki from '@/components/TextHoverEffect/index.vue'
-import { NGrid, NGi } from 'naive-ui'
+import { NGrid, NGi, NProgress } from 'naive-ui'
 import { onMounted, ref } from 'vue'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment'
+import Square from './components/square/index.vue'
 
+const percentage = ref(0)
 const cameraX = ref(0)
 const cameraY = ref(0)
 const cameraZ = ref(0)
 const renderer = new THREE.WebGLRenderer({ antialias: true })
 const scene = new THREE.Scene() // 创建场景
 let camera = null
+let controls = null
 
 onMounted(() => {
   const container = document.getElementById('container')
@@ -61,10 +64,12 @@ onMounted(() => {
       const material4 = new THREE.MeshNormalMaterial({
         color: '#4ade80' // 红色
       })
+      const material5 = new THREE.MeshBasicMaterial({
+        color: '#b91c1c' // 红色
+      })
 
       // 遍历模型的所有网格，将它们的材质设置为新创建的材质对象
       model.traverse((child) => {
-        console.log(child)
         if (child.isMesh) {
           const { name } = child
           if (name === 'Mesh129') child.material = material
@@ -76,30 +81,41 @@ onMounted(() => {
           if (name === 'Mesh143_1' || name === 'Mesh144_1')
             // 后排门
             child.material = material4 // 座椅
+          if (name === 'Wheel1001') {
+            console.log(child, 222)
+            // 轮胎 Wheel1001
+            // child.material = material5
+            // console.log(child, 66666666)
+            // child.userData.speed = 0.01
+            // child.rotation.x = 5
+            // child.rotation.z = 5
+            // child.rotation.y = 5
+          }
         }
-        // if (child.isGroup) {
-        //   child.children.forEach((subChild) => {
-        //     if (subChild.isMesh) {
-        //       subChild.material = material
-        //     }
-        //   })
-        // }
       })
 
       // 调整模型位置
       model.position.set(0, -0.6, 0)
-      model.scale.set(0.9, 0.9, 0.9)
+      model.scale.set(0.65, 0.65, 0.65)
       scene.add(model)
-      console.log(camera.position, '***')
       renderer.render(scene, camera) //执行渲染操作
     },
-    undefined,
+    (event) => {
+      const percentageVal = Math.round((event.loaded / event.total) * 100)
+      if (percentageVal === 100) {
+        setTimeout(() => {
+          percentage.value = percentageVal
+        }, 500)
+      } else {
+        percentage.value = percentageVal
+      }
+    },
     function (e) {
       console.error(e)
     }
   )
   // 设置相机控件轨道控制器OrbitControls
-  const controls = new OrbitControls(camera, renderer.domElement)
+  controls = new OrbitControls(camera, renderer.domElement)
   controls.addEventListener('change', function () {
     const { x, y, z } = camera.position
     cameraX.value = x
@@ -118,6 +134,9 @@ const originClick = () => {
 </script>
 
 <template>
+  <div ref="draggable">
+    <div>343242423432432423</div>
+  </div>
   <n-grid :x-gap="12" :y-gap="12" :cols="4">
     <n-gi :span="2">
       <div class="h-101 bg-bg-color rounded-2xl p-21 box-border">
@@ -137,11 +156,33 @@ const originClick = () => {
     </n-gi>
   </n-grid>
   <n-grid :x-gap="12" :y-gap="12" :cols="12">
-    <n-gi :span="12">
+    <n-gi
+      :span="4"
+      class="mt-5 h-650 bg-bg-color rounded-2xl flex flex-col justify-between"
+    >
+      <div class="h-320 w-full">
+        <Square :is-grid="true" />
+      </div>
+      <div class="h-320 w-full">
+        <Square id="ganyu" url="./img/ganyu.png" />
+      </div>
+    </n-gi>
+    <n-gi :span="8" class="relative mt-5">
       <div
         id="container"
-        class="three-modal mt-5 h-650 bg-bg-color rounded-2xl"
+        class="three-modal h-650 bg-bg-color rounded-2xl"
       ></div>
+      <div
+        v-if="percentage !== 100"
+        class="absolute w-full h-full bg-mask justify-center top-0 items-center box-border flex px-10"
+      >
+        <n-progress
+          type="line"
+          :percentage="percentage"
+          :indicator-placement="'inside'"
+          processing
+        />
+      </div>
     </n-gi>
   </n-grid>
 </template>

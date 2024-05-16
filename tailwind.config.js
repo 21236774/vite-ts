@@ -8,6 +8,7 @@ module.exports = {
       primary: '#1989fa',
       success: '#07c160',
       info: '#2080f0',
+      mask: 'rgba(0, 0, 0, 0.3)',
       'bg-color': 'var(--color-bg-color)',
       'text-color': 'var(--color-text-color)',
       'global-color': 'var(--color-global-color)',
@@ -27,6 +28,7 @@ module.exports = {
         41: '40px',
         101: '100px',
         201: '200px',
+        320: '320px',
         400: '400px',
         650: '650px',
         1200: '1200px'
