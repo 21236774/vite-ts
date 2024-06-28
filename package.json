@@ -32,6 +32,7 @@
     "pinia-plugin-persist": "^1.0.0",
     "serve-static": "^1.15.0",
     "three": "0.155.0",
+    "d3": "^7.9.0",
     "vditor": "^3.9.1",
     "vue": "^3.2.25",
     "vue-i18n": "^9.2.2",
