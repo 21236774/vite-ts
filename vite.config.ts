@@ -38,7 +38,7 @@ export default defineConfig(({ command, mode }) => {
       // 代理
       proxy: {
         '/api-proxy': {
-          target: 'http://123.207.197.245:9999/api/',
+          target: 'http://localhost:9999/api/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api-proxy/, '')
         }

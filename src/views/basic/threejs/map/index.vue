@@ -102,15 +102,15 @@ const calcUv2 = (geometry, width, height, minX, minY) => {
 
 onMounted(() => {
   const container = document.getElementById('threejsSquare' + props.id)
-  // scene.background = new THREE.Color(0xbfe3dd)
+  scene.background = new THREE.Color(0xbfe3dd)
   camera = new THREE.PerspectiveCamera(
-    10,
+    40,
     container?.offsetWidth / container?.offsetHeight || 0,
-    10,
-    1000
+    0.1,
+    10000
   )
-  camera.position.set(0, 0, 100) // 举例，设置相机的位置
-  camera.lookAt(0, 0, 0)
+  camera.position.set(0, 0, 300) // 举例，设置相机的位置
+  camera.lookAt(0, 0, 20)
   const axes = new THREE.AxesHelper(700)
   scene.add(axes)
   setPointLight(scene)
@@ -118,7 +118,7 @@ onMounted(() => {
   // 请求湖北数据
   const loader = new THREE.FileLoader()
   loader.load(
-    'https://geo.datav.aliyun.com/areas_v3/bound/360000_full.json',
+    'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
     (data) => {
       const jsondata = JSON.parse(data)
       operationData(jsondata)
@@ -126,13 +126,13 @@ onMounted(() => {
   )
   const textureLoader = new THREE.TextureLoader()
   const getTextureMash = () => {
-    const topNormal = textureLoader.load('img/top.jpg')
+    const topNormal = textureLoader.load('img/ganyu.png')
     topNormal.wrapS = topNormal.wrapT = THREE.RepeatWrapping
     const sideTexture = textureLoader.load('img/side.png')
     sideTexture.wrapS = sideTexture.wrapT = THREE.RepeatWrapping
     console.log(sideTexture, 222)
     const topMaterial = new THREE.MeshStandardMaterial({
-      color: 0x061e47,
+      color: '#e5e7eb',
       emissive: 0x000000,
       map: topNormal,
       transparent: true,
@@ -201,8 +201,8 @@ onMounted(() => {
 
   const projection = d3
     .geoMercator()
-    .center([115.68045, 27.679291])
-    .translate([0, 0]) // 坐标转换，设置湖北中心点
+    .center([116.412318, 39.909843])
+    .translate([0, 0]) // 坐标转换，设置北京中心点
   // 绘制面，材质
   function drawExtrudeMesh(polygon, color, info) {
     const shape = new THREE.Shape()
@@ -255,7 +255,7 @@ onMounted(() => {
 
       if (feature.geometry.type === 'Polygon') {
         // 多边形
-        coordinates.forEach((coordinate) => {
+        coordinates.coordinates.forEach((coordinate) => {
           const mesh = drawExtrudeMesh(coordinate, color)
           group.add(mesh)
         })
@@ -264,17 +264,17 @@ onMounted(() => {
       map.add(group)
     })
     scene.add(map)
+
+    // 为每组纹理贴图UV
     const { boxSize, box3 } = getBoundBox(map)
     map.children.forEach((group) => {
       group.children.map((mesh) => {
         if (mesh.type === 'Mesh') {
-          // this.eventElement.push(mesh);
-
           calcUv2(mesh.geometry, boxSize.x, boxSize.y, box3.min.x, box3.min.y)
         }
       })
     })
-
+    map.rotation.x = Math.PI
     animate()
   }
 
@@ -307,5 +307,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div :id="'threejsSquare' + id" class="w-full h-full"></div>
+  <div style="width: 100%; height: 800px">
+    <div :id="'threejsSquare' + id" class="w-full h-full"></div>
+  </div>
 </template>

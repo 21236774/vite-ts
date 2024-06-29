@@ -12,6 +12,7 @@ const views: { [key: string | number]: Component } = {
   article_list: () => import('./basic/article/list/index.vue'),
   article_new: () => import('./basic/article/new/index.vue'),
   article_type: () => import('./basic/article/type/index.vue'),
-  threejs_texture: () => import('./basic/threejs/texture/index.vue')
+  threejs_texture: () => import('./basic/threejs/texture/index.vue'),
+  threejs_map: () => import('./basic/threejs/map/index.vue')
 }
 export { views }
