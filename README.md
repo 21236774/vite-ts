@@ -1,8 +1,8 @@
 # Vue 3 + TypeScript + Vite + Naive + pinia
 
-### [在线预览](http://123.207.197.245:8080/xdd-admin/)
+### [在线预览](https://21236774.github.io/vite-ts)
 
-> 用户名 gudu  密码 123456
+> 用户名 gudu  密码 123456 （服务器过期了登录不了了，数据库考虑配置其他地方）
 
 ### 快速开始
 
@@ -46,7 +46,7 @@ npm run prepare
   "lint": "lint-staged"
 ```
 
-##### 新增菜单Menu
+##### 新增菜单Menu（第一版使用mock，第二版使用后端接口）
 1. src/views/basic 新建文件夹和vue文件
 2. src/views/index.ts 导出所创建的vue文件、key值起名和 `mock` 数据一致
 3. src/mock/router.ts 中给对应的角色设置对应的权限（注意：`name`需与第二步的`key`值一样）
