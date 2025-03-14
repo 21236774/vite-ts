@@ -1,0 +1,38 @@
+
+.n-tabs .n-tab-pane {
+ padding: 0;
+}
+.n-tabs .n-tabs-nav-scroll-content {
+  min-width: 0;
+}
+
+.n-tabs .n-tabs-nav.n-tabs-nav--card-type .n-tabs-tab.n-tabs-tab--active {
+  background-color: var(--color-active-color);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar-track {
+  border-radius: 12px;
+  background: none;
+  box-shadow: none;
+}
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #999;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
