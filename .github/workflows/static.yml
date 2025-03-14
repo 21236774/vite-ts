@@ -39,7 +39,7 @@ jobs:
       - name: Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@latest --activate
+          corepack prepare pnpm@latest --activate --clear-cache
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
       - name: Build
