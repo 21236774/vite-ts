@@ -2,11 +2,23 @@
 
 ### [在线预览](https://21236774.github.io/vite-ts)
 
+<<<<<<< HEAD
+
+> # 用户名 gudu 密码 123456 （服务器过期了登录不了了，数据库考虑配置其他地方）
+>
 > 用户名 gudu 密码 123456 （服务器过期了登录不了了，数据库考虑配置其他地方）
+>
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
 
 ### 快速开始
 
 ##### 克隆仓库
+
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
 
 ```bash
 git clone https://github.com/21236774/vite-ts.git
@@ -14,11 +26,25 @@ git clone https://github.com/21236774/vite-ts.git
 
 ##### 进入目录
 
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
+
 ```bash
 cd vite-ts
 ```
 
+<<<<<<< HEAD
+
 ##### 安装依赖 （没有 pnpm 记得 npm i pnpm -g ）
+
+=======
+
+##### 安装依赖 （没有 pnpm 记得 npm i pnpm -g ）
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
 
 ```bash
 pnpm i
@@ -26,19 +52,38 @@ pnpm i
 
 ##### 运行项目
 
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
+
 ```bash
 npm run dev
 ```
 
 ##### 代码提交校验
 
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
+
 ```bash
 npm run prepare
 ```
 
+<<<<<<< HEAD
+
 ##### 运行 script
 
-```javascript
+````javascript
+=======
+##### 运行script
+
+``` javascript
+>>>>>>> f146692207f8b563783a1940c4731092d8aac318
   // 本地环境运行
   "dev": "vite"
   // 打包生产环境
@@ -49,17 +94,31 @@ npm run prepare
   "prepare": "husky install"
   // esline 提交代码校验
   "lint": "lint-staged"
-```
+````
+
+<<<<<<< HEAD
+
+##### 新增菜单 Menu（第一版使用 mock，第二版使用后端接口）
+
+1. src/views/basic 新建文件夹和 vue 文件
+2. # src/views/index.ts 导出所创建的 vue 文件、key 值起名和 `mock` 数据一致
 
 ##### 新增菜单 Menu（第一版使用 mock，第二版使用后端接口）
 
 1. src/views/basic 新建文件夹和 vue 文件
 2. src/views/index.ts 导出所创建的 vue 文件、key 值起名和 `mock` 数据一致
+   > > > > > > > f146692207f8b563783a1940c4731092d8aac318
 3. src/mock/router.ts 中给对应的角色设置对应的权限（注意：`name`需与第二步的`key`值一样）
 
 > 有真实接口的话，可让后台返回真实对应的即可
 
 ### 目录结构
+
+<<<<<<< HEAD
+
+=======
+
+> > > > > > > f146692207f8b563783a1940c4731092d8aac318
 
 ```
 public                               公共资源

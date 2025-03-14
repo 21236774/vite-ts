@@ -40,7 +40,6 @@ const dialog = useDialog()
 const message = useMessage()
 const store = useStoreTheme()
 const authStore = useStoreAuth()
-
 const columns: any[] = [
   {
     title: '标题',

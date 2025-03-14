@@ -24,7 +24,6 @@ export const dynamicGuard = async (
     }
     if (to.name === '404') next(false)
     await store.handleAuthRoute(redirect)
-
     if (store.routeAuthNum) {
       next('/login')
       return true
